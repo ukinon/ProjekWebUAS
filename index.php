@@ -2,6 +2,7 @@
 require "function.php";
 require "check.php";
 require "data.php";
+include "connection.php";
 error_reporting(E_ALL ^ E_WARNING);
 
 
@@ -124,7 +125,7 @@ if (isset($_POST["ti1a"])) {
   $semester1a = $new_array;
 }
 
-
+$conn = OpenCon();
 ?>
 
 <!DOCTYPE html>
@@ -254,35 +255,54 @@ if (isset($_POST["ti1a"])) {
     <div class="flex justify-center h-96 overflow-y-scroll m-5">
       <table class=" w-full text-black border-white table-compact shadow-lg text-center">
         <thead class="bg-white text-black sticky top-0">
-          <tr>
-            <th scope="col">No</th>
-            <th scope="col">Hari</th>
-            <th scope="col">Waktu</th>
-            <th scope="col">Mata Kuliah</th>
-            <th scope="col">dropDown</th>
-            <th scope="col">Ruang</th>
-            <th scope="col">JJ</th>
-            <th scope="col">Tahun Ajaran</th>
-            <th scope="col">Semester</th>
-            <th scope="col">Kelas</th>
-          </tr>
+        <tr>  
+                <td class="w-10"> No </td>  
+                <td> Jam </td> 
+                <td> Mata Kuliah </td> 
+                <td> Hari </td>
+                <td> Dosen </td> 
+                <td> Ruang </td>
+                <td> SKS </td> 
+                <td> Tahun Ajaran </td>
+                <td> Semester </td>
+                <td> Kelas </td>
+                <td> status </td> 
+            </tr>
         </thead>
-        <tbody class="bg-slate-200 text-black">
+        <tbody class="bg-slate-200 text-black color">
           <?php
-          foreach ($semester1a as $data) {
-            echo "<tr>";
-            echo "<td>" . $data['val0'] . "</td>";
-            echo "<td>" . $data['val1'] . "</td>";
-            echo "<td>" . $data['val2'] . "</td>";
-            echo "<td>" . $data['val3'] . "</td>";
-            echo "<td>" . $data['val4'] . "</td>";
-            echo "<td>" . $data['val5'] . "</td>";
-            echo "<td>" . $data['val6'] . "</td>";
-            echo "<td>" . $data['val7'] . "</td>";
-            echo "<td>" . $data['val8'] . "</td>";
-            echo "<td>" . $data['val9'] . "</td>";
-
-            echo "</tr>";
+          $sql = "SELECT * FROM jadwal";
+          $result = $conn -> query($sql);
+          $nomor = 1; 
+          if ($result->num_rows > 0) {          
+          while ($row = $result->fetch_assoc()) {
+              $jam = $row["jam"];
+              $matkul = $row["matkul"];
+              $hari = $row["hari"];
+              $dosen = $row["dosen"];
+              $ruang = $row["ruang"];
+              $sks = $row["sks"];
+              $tahun = $row["tahun_ajaran"];
+              $semester = $row["semester"];
+              $kelas = $row["kelas"]; 
+              
+              echo '<tr> 
+                        <td>'. $nomor++ .'</td>
+                        <td>'.$jam.'</td> 
+                        <td>'.$matkul.'</td> 
+                        <td>'.$hari.'</td> 
+                        <td>'.$dosen.'</td> 
+                        <td>'.$ruang.'</td> 
+                        <td>'.$sks.'</td> 
+                        <td>'.$tahun.'</td> 
+                        <td>'.$semester.'</td> 
+                        <td>'.$kelas.'</td> 
+                        <td> <a style="color:blue; cursor: pointer;""> edit </a> | <a style="color:red; cursor: pointer;"> delete </a></td>
+                  
+                    </tr>';
+        }
+         } else {
+            echo "No Data";
           }
           ?>
         </tbody>
