@@ -66,7 +66,7 @@ $conn = OpenCon();
 </script>
 </head>
 
-<body class="m-0">
+<body class="m-0 bg-base-100 h-100%">
   <div class="navbar bg-base-300 sticky top-0 z-50">
     <div class="flex-1 text-white">
       <?php if ($LOGIN === true) { ?>
@@ -107,7 +107,7 @@ $conn = OpenCon();
 
   <form action="" method="POST">
     <div class="option mt-3">
-          <select name="s_hari" id="s_hari" class="rounded-md bg-slate-200 text-black h-10">
+          <select name="s_hari" id="s_hari" class="rounded-md bg-slate-200 text-black h-10 mr-3">
             <option value="">Hari</option>
             <option value="senin">Senin</option>
             <option value="selasa">Selasa</option>
@@ -117,7 +117,7 @@ $conn = OpenCon();
             <option value="sabtu">Sabtu</option>
       </select>
 
-          <select tabindex="0" name="s_dosen" id="s_dosen" class="rounded-md bg-slate-200 text-black h-10">
+          <select tabindex="0" name="s_dosen" id="s_dosen" class="rounded-md bg-slate-200 text-black h-10 mr-3">
           <option value=""> Dosen </option>  
           <option value="ella">Ella</option>
             <option value="adi">Adi</option>
@@ -141,7 +141,7 @@ $conn = OpenCon();
             <option><button name="Refirman" class="dropdown-item">Refirman</button></option>
       </select>
 
-          <select tabindex="0" class="rounded-md bg-slate-200 text-black h-10">
+          <select tabindex="0" class="rounded-md bg-slate-200 text-black h-10 mr-3">
             <option><button name="ti1a" class="dropdown-item">TI 1A</button></option>
             <option><button name="ti1b" class="dropdown-item">TI 1B</button></option>
             <option><button name="ti3a" class="dropdown-item">TI 3A</button></option>
@@ -150,7 +150,7 @@ $conn = OpenCon();
             <option><button name="ti7a" class="dropdown-item">TI 7A</button></option>
             <option><button name="ti7b" class="dropdown-item">TI 7B</button></option>
       </select>
-
+     <button class="btn bg-slate-200 text-black" id="resetfilter">Reset</button>
       </form>
     </div>
 
