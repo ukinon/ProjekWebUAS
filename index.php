@@ -4,127 +4,6 @@ require "check.php";
 require "data.php";
 include "connection.php";
 error_reporting(E_ALL ^ E_WARNING);
-
-
-if (isset($_POST["search"])) {
-  $filterBy = $_POST['keyword'];
-  $new_array = filter_array($semester1a, $filterBy);
-  $semester1a = $new_array;
-}
-if (isset($_POST["senin"])) {
-  $new_array = dropDown($semester1a, "val1", "Senin");
-  $semester1a = $new_array;
-}
-if (isset($_POST["selasa"])) {
-  $new_array = dropDown($semester1a, "val1", "Selasa");
-  $semester1a = $new_array;
-}
-if (isset($_POST["rabu"])) {
-  $new_array = dropDown($semester1a, "val1", "Rabu");
-  $semester1a = $new_array;
-}
-
-if (isset($_POST["kamis"])) {
-  $new_array = dropDown($semester1a, "val1", "Kamis");
-  $semester1a = $new_array;
-}
-
-if (isset($_POST["jumat"])) {
-  $new_array = dropDown($semester1a, "val1", "Jumat");
-  $semester1a = $new_array;
-}
-
-if (isset($_POST["sabtu"])) {
-  $new_array = dropDown($semester1a, "val1", "Sabtu");
-  $semester1a = $new_array;
-}
-
-if (isset($_POST["Ella"])) {
-  $new_array = dropDown($semester1a, "val4", "Ella");
-  $semester1a = $new_array;
-} else if (isset($_POST["Adi"])) {
-  $new_array = dropDown($semester1a, "val4", "Adi");
-  $semester1a = $new_array;
-} else if (isset($_POST["Ayres"])) {
-  $new_array = dropDown($semester1a, "val4", "Ayres");
-  $semester1a = $new_array;
-} else if (isset($_POST["Dewik"])) {
-  $new_array = dropDown($semester1a, "val4", "Dewi K");
-  $semester1a = $new_array;
-} else if (isset($_POST["Mera"])) {
-  $new_array = dropDown($semester1a, "val4", "Mera");
-  $semester1a = $new_array;
-} else if (isset($_POST["Agus"])) {
-  $new_array = dropDown($semester1a, "val4", "Agus");
-  $semester1a = $new_array;
-} else if (isset($_POST["Dewiyanti"])) {
-  $new_array = dropDown($semester1a, "val4", "Dewiyanti");
-  $semester1a = $new_array;
-} else if (isset($_POST["Chandra"])) {
-  $new_array = dropDown($semester1a, "val4", "Chandra");
-  $semester1a = $new_array;
-} else if (isset($_POST["Weldy"])) {
-  $new_array = dropDown($semester1a, "val4", "Weldy");
-  $semester1a = $new_array;
-} else if (isset($_POST["Anggi"])) {
-  $new_array = dropDown($semester1a, "val4", "Anggi");
-  $semester1a = $new_array;
-} else if (isset($_POST["Rasyid"])) {
-  $new_array = dropDown($semester1a, "val4", "Rasyid");
-  $semester1a = $new_array;
-} else if (isset($_POST["Herlino"])) {
-  $new_array = dropDown($semester1a, "val4", "Herlino");
-  $semester1a = $new_array;
-} else if (isset($_POST["Taufik"])) {
-  $new_array = dropDown($semester1a, "val4", "Taufik");
-  $semester1a = $new_array;
-} else if (isset($_POST["Risna"])) {
-  $new_array = dropDown($semester1a, "val4", "Risna");
-  $semester1a = $new_array;
-} else if (isset($_POST["Syamsi"])) {
-  $new_array = dropDown($semester1a, "val4", "Syamsi");
-  $semester1a = $new_array;
-} else if (isset($_POST["Euis"])) {
-  $new_array = dropDown($semester1a, "val4", "Euis");
-  $semester1a = $new_array;
-} else if (isset($_POST["Asep"])) {
-  $new_array = dropDown($semester1a, "val4", "Asep");
-  $semester1a = $new_array;
-} else if (isset($_POST["Iklima"])) {
-  $new_array = dropDown($semester1a, "val4", "Iklima");
-  $semester1a = $new_array;
-} else if (isset($_POST["Shinta"])) {
-  $new_array = dropDown($semester1a, "val4", "Shinta");
-  $semester1a = $new_array;
-} else if (isset($_POST["Refirman"])) {
-  $new_array = dropDown($semester1a, "val4", "Refirman");
-  $semester1a = $new_array;
-}
-
-
-if (isset($_POST["ti1a"])) {
-  $new_array = dropDown($semester1a, "val9", "TI 1A");
-  $semester1a = $new_array;
-} else if (isset($_POST["ti1b"])) {
-  $new_array = dropDown($semester1a, "val9", "TI 1B");
-  $semester1a = $new_array;
-} else if (isset($_POST["ti3a"])) {
-  $new_array = dropDown($semester1a, "val9", "TI 3A");
-  $semester1a = $new_array;
-} else if (isset($_POST["ti3b"])) {
-  $new_array = dropDown($semester1a, "val9", "TI 3B");
-  $semester1a = $new_array;
-} else if (isset($_POST["ti5a"])) {
-  $new_array = dropDown($semester1a, "val9", "TI 5A");
-  $semester1a = $new_array;
-} else if (isset($_POST["ti7a"])) {
-  $new_array = dropDown($semester1a, "val9", "TI 7A");
-  $semester1a = $new_array;
-} else if (isset($_POST["ti7b"])) {
-  $new_array = dropDown($semester1a, "val9", "TI 7B");
-  $semester1a = $new_array;
-}
-
 $conn = OpenCon();
 ?>
 
@@ -137,9 +16,60 @@ $conn = OpenCon();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/daisyui@2.38.1/dist/full.css" rel="stylesheet" type="text/css" />
-  <script src="jquery-3.6.0.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
   <title>Document</title>
+
+  <script>
+	$(document).ready(function(){
+		load_hari();
+    load_dosen();
+		function load_hari(hari, keyword)
+		{
+			$.ajax({
+				method:"POST",
+				url:"dataJadwal.php",
+				data: {hari:hari, keyword:keyword},
+				success: function(hasil)
+				{
+					$('#data').html(hasil);
+				}
+			});
+	 	}
+     function load_dosen(dosen, keyword)
+		{
+			$.ajax({
+				method:"POST",
+				url:"dataJadwal.php",
+				data: {dosen:dosen, keyword:keyword},
+				success: function(hasil)
+				{
+					$('#data').html(hasil);
+				}
+			});
+	 	}
+		$('#s_keyword').keyup(function(){
+			var hari = $("#s_hari").val();
+    		var keyword = $("#s_keyword").val();
+			load_hari(hari, keyword);
+		});
+		$('#s_hari').change(function(){
+			var hari = $("#s_hari").val();
+    		var keyword = $("#s_keyword").val();
+			load_hari(hari, keyword);
+		});
+    $('#s_dosen').change(function(){
+			var dosen = $("#s_dosen").val();
+    		var keyword = $("#s_keyword").val();
+			load_dosen(dosen, keyword);
+		});
+    $('#s_matkul').change(function(){
+			var matkul = $("#s_matkul").val();
+    		var keyword = $("#s_keyword").val();
+			load_data(matkul, keyword);
+		});
+	});
+</script>
 </head>
 
 <body class="m-0">
@@ -155,17 +85,11 @@ $conn = OpenCon();
       <?php } ?>
     </div>
     <div class="flex-none gap-2">
-      <div class="">
-        <form action="" method="POST">
+      <form action="" method="POST">
           <div class="input-group">
-            <input type="search" placeholder="Search…" class="input input-bordered" aria-label="Search" name="keyword" autocomplete="off" />
-            <button class="btn btn-square bg-white" id="search" type="submit" name="search">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </button>
+            <input type="text" placeholder="Search…" class="input input-bordered" aria-label="Search" name="s_keyword" id="s_keyword" autocomplete="off" />
           </div>
-        </form>
+      </form>
       </div>
     </div>
   </div>
@@ -189,125 +113,58 @@ $conn = OpenCon();
   </div>
   <div class="flex justify-center">
 
+  <form action="" method="POST">
     <div class="option mt-3">
-      <form action="" method="POST">
+          <select name="s_hari" id="s_hari" class="rounded-md bg-slate-200 text-black h-10">
+            <option value="">Hari</option>
+            <option value="senin">Senin</option>
+            <option value="selasa">Selasa</option>
+            <option value="rabu">Rabu</option>
+            <option value="kamis">Kamis</option>
+            <option value="jumat">Jum'at</option>
+            <option value="sabtu">Sabtu</option>
+      </select>
 
-        <div class="dropdown dropdown-bottom m-3">
-          <label tabindex="0" class="btn bg-slate-200 text-black">Hari</label>
-          <ul tabindex="0" class="flex flex-row dropdown-content menu p-0.5 shadow bg-base-300 text-white w-24 text-sm h-40 overflow-y-scroll">
-            <li><button name="senin" class="dropdown-item ">Senin</button></li>
-            <li><button name="selasa" class="dropdown-item">Selasa</button></li>
-            <li><button name="rabu" class="dropdown-item">Rabu</button></li>
-            <li><button name="kamis" class="dropdown-item">kamis</button></li>
-            <li><button name="jumat" class="dropdown-item">Jum'at</button></li>
-            <li><button name="sabtu" class="dropdown-item">Sabtu</button></li>
-          </ul>
-        </div>
+          <select tabindex="0" name="s_dosen" id="s_dosen" class="rounded-md bg-slate-200 text-black h-10">
+          <option value=""> Dosen </option>  
+          <option value="ella">Ella</option>
+            <option value="adi">Adi</option>
+            <option value="ayres">Ayres</option>
+            <option value="dewi k">Dewi K</option>
+            <option><button name="Mera" class="dropdown-item">Mera</button></option>
+            <option><button name="Agus" class="dropdown-item">Agus</button></option>
+            <option><button name="Dewiyanti" class="dropdown-item">Dewiyanti</button></option>
+            <option><button name="Chandra" class="dropdown-item">Chandra</button></option>
+            <option><button name="Weldy" class="dropdown-item">Weldy</button></option>
+            <option value="anggi">Anggi</option>
+            <option><button name="Rasyid" class="dropdown-item">Rasyid</button></option>
+            <option><button name="Herlino" class="dropdown-item">Herlino</button></option>
+            <option><button name="Taufik" class="dropdown-item">Taufik</button></option>
+            <option><button name="Risna" class="dropdown-item">Risna</button></option>
+            <option><button name="Syamsi" class="dropdown-item">Syamsi</button></option>
+            <option><button name="Euis" class="dropdown-item">Euis</button></option>
+            <option><button name="Asep" class="dropdown-item">Asep</button></option>
+            <option><button name="Iklima" class="dropdown-item">Iklima</button></option>
+            <option><button name="Shinta" class="dropdown-item">Shinta</button></option>
+            <option><button name="Refirman" class="dropdown-item">Refirman</button></option>
+      </select>
 
-        <div class="dropdown dropdown-end">
-          <label tabindex="0" class="btn  bg-slate-200 text-black">Dosen</label>
-          <ul tabindex="0" class="flex flex-row dropdown-content menu p-0.5 shadow bg-base-300 text-white w-26 text-sm h-40 overflow-y-scroll">
-            <li> <button name="Ella" class="dropdown-item">Ella</button></li>
-            <li><button name="Adi" class="dropdown-item">Adi</button></li>
-            <li><button name="Ayres" class="dropdown-item">Ayres</button></li>
-            <li><button name="Dewik" class="dropdown-item">Dewi K</button></li>
-            <li><button name="Mera" class="dropdown-item">Mera</button></li>
-            <li><button name="Agus" class="dropdown-item">Agus</button></li>
-            <li><button name="Dewiyanti" class="dropdown-item">Dewiyanti</button></li>
-            <li><button name="Chandra" class="dropdown-item">Chandra</button></li>
-            <li><button name="Weldy" class="dropdown-item">Weldy</button></li>
-            <li><button name="Anggi" class="dropdown-item">Anggi</button></li>
-            <li><button name="Rasyid" class="dropdown-item">Rasyid</button></li>
-            <li><button name="Herlino" class="dropdown-item">Herlino</button></li>
-            <li><button name="Taufik" class="dropdown-item">Taufik</button></li>
-            <li><button name="Risna" class="dropdown-item">Risna</button></li>
-            <li><button name="Syamsi" class="dropdown-item">Syamsi</button></li>
-            <li><button name="Euis" class="dropdown-item">Euis</button></li>
-            <li><button name="Asep" class="dropdown-item">Asep</button></li>
-            <li><button name="Iklima" class="dropdown-item">Iklima</button></li>
-            <li><button name="Shinta" class="dropdown-item">Shinta</button></li>
-            <li><button name="Refirman" class="dropdown-item">Refirman</button></li>
-          </ul>
-        </div>
-
-        <div class="dropdown dropdown-end m-3">
-          <label tabindex="0" class="btn bg-slate-200 text-black">Kelas</label>
-          <ul tabindex="0" class="dropdown-content menu p-1 shadow bg-base-300 text-white rounded-box w-52 text-sm">
-            <li><button name="ti1a" class="dropdown-item">TI 1A</button></li>
-            <li><button name="ti1b" class="dropdown-item">TI 1B</button></li>
-            <li><button name="ti3a" class="dropdown-item">TI 3A</button></li>
-            <li><button name="ti3b" class="dropdown-item">TI 3B</button></li>
-            <li><button name="ti5a" class="dropdown-item">TI 5A</button></li>
-            <li><button name="ti7a" class="dropdown-item">TI 7A</button></li>
-            <li><button name="ti7b" class="dropdown-item">TI 7B</button></li>
-          </ul>
-
-        </div>
+          <select tabindex="0" class="rounded-md bg-slate-200 text-black h-10">
+            <option><button name="ti1a" class="dropdown-item">TI 1A</button></option>
+            <option><button name="ti1b" class="dropdown-item">TI 1B</button></option>
+            <option><button name="ti3a" class="dropdown-item">TI 3A</button></option>
+            <option><button name="ti3b" class="dropdown-item">TI 3B</button></option>
+            <option><button name="ti5a" class="dropdown-item">TI 5A</button></option>
+            <option><button name="ti7a" class="dropdown-item">TI 7A</button></option>
+            <option><button name="ti7b" class="dropdown-item">TI 7B</button></option>
+      </select>
 
       </form>
-
     </div>
 
   </div>
 
-  <form action="" method="POST">
-
-    <div class="flex justify-center h-96 overflow-y-scroll m-5">
-      <table class=" w-full text-black border-white table-compact shadow-lg text-center">
-        <thead class="bg-white text-black sticky top-0">
-        <tr>  
-                <td class="w-10"> No </td>  
-                <td> Jam </td> 
-                <td> Mata Kuliah </td> 
-                <td> Hari </td>
-                <td> Dosen </td> 
-                <td> Ruang </td>
-                <td> SKS </td> 
-                <td> Tahun Ajaran </td>
-                <td> Semester </td>
-                <td> Kelas </td>
-                <td> status </td> 
-            </tr>
-        </thead>
-        <tbody class="bg-slate-200 text-black color">
-          <?php
-          $sql = "SELECT * FROM jadwal";
-          $result = $conn -> query($sql);
-          $nomor = 1; 
-          if ($result->num_rows > 0) {          
-          while ($row = $result->fetch_assoc()) {
-              $jam = $row["jam"];
-              $matkul = $row["matkul"];
-              $hari = $row["hari"];
-              $dosen = $row["dosen"];
-              $ruang = $row["ruang"];
-              $sks = $row["sks"];
-              $tahun = $row["tahun_ajaran"];
-              $semester = $row["semester"];
-              $kelas = $row["kelas"]; 
-              
-              echo '<tr> 
-                        <td>'. $nomor++ .'</td>
-                        <td>'.$jam.'</td> 
-                        <td>'.$matkul.'</td> 
-                        <td>'.$hari.'</td> 
-                        <td>'.$dosen.'</td> 
-                        <td>'.$ruang.'</td> 
-                        <td>'.$sks.'</td> 
-                        <td>'.$tahun.'</td> 
-                        <td>'.$semester.'</td> 
-                        <td>'.$kelas.'</td> 
-                        <td> <a style="color:blue; cursor: pointer;""> edit </a> | <a style="color:red; cursor: pointer;"> delete </a></td>
-                  
-                    </tr>';
-        }
-         } else {
-            echo "No Data";
-          }
-          ?>
-        </tbody>
-      </table>
-    </div>
+    <div class="flex justify-center overflow-y-scroll m-5" id="data"> </div>
 
 
     <!-- ADMIN LOGIN -->
@@ -345,5 +202,7 @@ $conn = OpenCon();
 
 
 </body>
+
+
 
 </html>
