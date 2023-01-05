@@ -2,7 +2,6 @@
 require "function.php";
 require "check.php";
 require "data.php";
-include "connection.php";
 error_reporting(E_ALL ^ E_WARNING);
 $conn = OpenCon();
 ?>
@@ -81,9 +80,7 @@ $conn = OpenCon();
     </div>
     <div class="flex-none gap-2">
       <form action="" method="POST">
-          <div class="input-group">
             <input type="text" placeholder="Search…" class="input input-bordered" aria-label="Search" name="s_keyword" id="s_keyword" autocomplete="off" />
-          </div>
       </form>
       </div>
     </div>
