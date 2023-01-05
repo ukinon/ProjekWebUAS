@@ -22,15 +22,18 @@
           $s_dosen = "";
           $s_keyword = "";
           
-
+          if (isset($_POST['keyword'])) {
+            $s_keyword = $_POST['keyword'];
+        }
           if (isset($_POST['hari'])) {
             $s_hari = $_POST['hari'];
-            $s_keyword = $_POST['keyword'];
         }
          if (isset($_POST['dosen'])) {
           $s_dosen = $_POST['dosen'];
-          $s_keyword = $_POST['keyword'];
-      }
+        }
+        if (isset($_POST['matkul'])) {
+        $s_matkul = $_POST['matkul'];
+        }
         $search_hari = '%'. $s_hari .'%';
         $search_keyword = '%'. $s_keyword .'%';
         $search_dosen = '%'. $s_dosen .'%';
@@ -71,7 +74,19 @@
                     </tr>';
         }
          } else {
-            echo "No Data";
+          echo '<tr> 
+          <td> No Data </td> 
+          <td> No Data </td> 
+          <td> No Data </td> 
+          <td> No Data </td> 
+          <td> No Data </td> 
+          <td> No Data </td> 
+          <td> No Data </td> 
+          <td> No Data </td> 
+          <td> No Data </td> 
+          <td> No Data </td> 
+          <td> No Data </td> 
+          </tr>';
           }
           ?>
         </tbody>

@@ -22,26 +22,13 @@ $conn = OpenCon();
 
   <script>
 	$(document).ready(function(){
-		load_hari();
-    load_dosen();
-		function load_hari(hari, keyword)
+		load_data();
+    function load_data(hari, dosen, matkul, keyword)
 		{
 			$.ajax({
 				method:"POST",
 				url:"dataJadwal.php",
-				data: {hari:hari, keyword:keyword},
-				success: function(hasil)
-				{
-					$('#data').html(hasil);
-				}
-			});
-	 	}
-     function load_dosen(dosen, keyword)
-		{
-			$.ajax({
-				method:"POST",
-				url:"dataJadwal.php",
-				data: {dosen:dosen, keyword:keyword},
+				data: {hari:hari, dosen:dosen, matkul:matkul, keyword:keyword},
 				success: function(hasil)
 				{
 					$('#data').html(hasil);
@@ -49,24 +36,32 @@ $conn = OpenCon();
 			});
 	 	}
 		$('#s_keyword').keyup(function(){
-			var hari = $("#s_hari").val();
+      var hari = $("#s_hari").val();
+      var dosen = $("#s_dosen").val();
+      var matkul = $("#s_matkul").val();
     		var keyword = $("#s_keyword").val();
-			load_hari(hari, keyword);
+			load_data(hari, dosen, matkul, keyword);
 		});
 		$('#s_hari').change(function(){
 			var hari = $("#s_hari").val();
+      var dosen = $("#s_dosen").val();
+      var matkul = $("#s_matkul").val();
     		var keyword = $("#s_keyword").val();
-			load_hari(hari, keyword);
+			load_data(hari, dosen, matkul, keyword);
 		});
     $('#s_dosen').change(function(){
-			var dosen = $("#s_dosen").val();
+			var hari = $("#s_hari").val();
+      var dosen = $("#s_dosen").val();
+      var matkul = $("#s_matkul").val();
     		var keyword = $("#s_keyword").val();
-			load_dosen(dosen, keyword);
+			load_data(hari, dosen, matkul, keyword);
 		});
     $('#s_matkul').change(function(){
-			var matkul = $("#s_matkul").val();
+			var hari = $("#s_hari").val();
+      var dosen = $("#s_dosen").val();
+      var matkul = $("#s_matkul").val();
     		var keyword = $("#s_keyword").val();
-			load_data(matkul, keyword);
+			load_data(hari, dosen, matkul, keyword);
 		});
 	});
 </script>
