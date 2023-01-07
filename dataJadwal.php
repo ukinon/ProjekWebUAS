@@ -15,7 +15,7 @@ require 'check.php';
                 <td> Semester </td>
                 <td> Kelas </td>
                 <?php if($LOGIN == true){ ?>
-                <td> status </td> 
+                <td> Aksi </td> 
                 <?php } ?>
             </tr>
         </thead>
@@ -82,8 +82,8 @@ require 'check.php';
                         ?>
                         <?php 
                         if($LOGIN == true) {?> 
-                        <td> <a href="editJadwal.php?id=<?php echo $id; ?>" class="text-blue-500">edit</a> |
-								        <a href="deleteJadwal.php?id=<?php echo $id; ?>" class="text-red-500">delete</a></td>
+                        <td> <a href="editJadwal.php?id=<?php echo $id; ?>" class="text-blue-600">edit</a> |
+								        <a href="deleteJadwal.php?id=<?php echo $id; ?>" class="text-red-600">delete</a></td>
                           <?php
                     '</tr>';
         }

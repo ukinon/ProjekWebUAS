@@ -188,7 +188,7 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
 <br>
     <!-- ADMIN LOGIN -->
     <!-- The button to open modal -->
-    <div id="login" class="ml-2 flex flex-row " <?php if ($LOGIN === true) { ?>class="hidden" <?php } ?>>
+    <div id="login"  <?php if ($LOGIN === true) { ?>class="hidden" <?php } else if($LOGIN == false){?> class="ml-2 flex flex-row " <?php } ?>>
       <h4 class="text-base-100 text-md">You're an admin? </h4>
       <label for="my-modal-2" class="ml-2 mb-2 font-bold underline text-black hover cursor-pointer">Login</label>
 
