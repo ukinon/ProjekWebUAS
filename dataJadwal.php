@@ -1,4 +1,8 @@
-<table class=" w-full text-black border-white table-compact shadow-lg text-center">
+<?php
+require 'check.php';
+?>
+
+<table class=" w-full text-black border-white table-compact shadow-lg text-center max-h-96">
         <thead class="bg-white text-black sticky top-0">
         <tr>  
                 <td class="w-10"> No </td>  
@@ -11,13 +15,13 @@
                 <td> Tahun Ajaran </td>
                 <td> Semester </td>
                 <td> Kelas </td>
+                <?php if($LOGIN == true){ ?>
                 <td> status </td> 
+                <?php } ?>
             </tr>
         </thead>
         <tbody class="bg-slate-200 text-black color">
           <?php
-          include 'connection.php';
-          
           $s_hari = "";
           $s_dosen = "";
           $s_keyword = "";
@@ -34,20 +38,22 @@
         if (isset($_POST['matkul'])) {
         $s_matkul = $_POST['matkul'];
         }
+       
         $search_hari = '%'. $s_hari .'%';
         $search_keyword = '%'. $s_keyword .'%';
         $search_dosen = '%'. $s_dosen .'%';
 
         $conn = OpenCon();
-          $sql = "SELECT * FROM jadwal WHERE hari LIKE ? AND dosen LIKE ? AND (dosen LIKE ? OR matkul LIKE ? OR dosen LIKE ? OR ruang LIKE ? OR sks LIKE ? OR tahun_ajaran LIKE ? OR semester LIKE ? or kelas LIKE ?)";
+          $sql = "SELECT * FROM jadwal WHERE hari LIKE ? AND dosen LIKE ? AND (hari LIKE ? OR dosen LIKE ? OR matkul LIKE ? OR dosen LIKE ? OR ruang LIKE ? OR sks LIKE ? OR tahun_ajaran LIKE ? OR semester LIKE ? or kelas LIKE ?)";
           $sort = $conn -> prepare($sql);
-          $sort->bind_param('ssssssssss', $search_hari, $search_dosen, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword);
+          $sort->bind_param('sssssssssss', $search_hari, $search_dosen, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword);
           $sort->execute();
           $result = $sort->get_result();
           $nomor = 1; 
 
           if ($result->num_rows > 0) {          
           while ($row = $result->fetch_assoc()) {
+              $id = $row["id"];
               $jam = $row["jam"];
               $matkul = $row["matkul"];
               $hari = $row["hari"];
@@ -68,14 +74,19 @@
                         <td>'.$sks.'</td> 
                         <td>'.$tahun.'</td> 
                         <td>'.$semester.'</td> 
-                        <td>'.$kelas.'</td> 
-                        <td> <a style="color:blue; cursor: pointer;""> edit </a> | <a style="color:red; cursor: pointer;"> delete </a></td>
-                  
-                    </tr>';
+                        <td>'.$kelas.'</td>'
+                        ?>
+                        <?php 
+                        if($LOGIN == true) {?> 
+                        <td> <a href="editJadwal.php?id=<?php echo $id; ?>" style="color: blue;">edit</a> |
+								        <a href="deleteJadwal.php?id=<?php echo $id; ?>" style="color: red;">delete</a></td>
+                          <?php
+                    '</tr>';
         }
+      }
          } else {
           echo '<tr> 
-          <td> No Data </td> 
+          <td> '.$nomor++.' </td> 
           <td> No Data </td> 
           <td> No Data </td> 
           <td> No Data </td> 

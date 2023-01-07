@@ -28,7 +28,3 @@ if (isset($_POST["logout"])) {
     session_destroy();
     $LOGIN = false;
 }
-
-if (isset($_POST["submit"])) {
-    echo "<script> alert('File sudah diupload') </script>";
-}
