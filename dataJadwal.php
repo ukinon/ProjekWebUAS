@@ -1,4 +1,4 @@
-<table class=" w-full text-black border-white table-compact shadow-lg text-center">
+<table class=" w-full text-black border-white table-compact shadow-lg text-center max-h-96">
         <thead class="bg-white text-black sticky top-0">
         <tr>  
                 <td class="w-10"> No </td>  
@@ -39,9 +39,9 @@
         $search_dosen = '%'. $s_dosen .'%';
 
         $conn = OpenCon();
-          $sql = "SELECT * FROM jadwal WHERE hari LIKE ? AND dosen LIKE ? AND (dosen LIKE ? OR matkul LIKE ? OR dosen LIKE ? OR ruang LIKE ? OR sks LIKE ? OR tahun_ajaran LIKE ? OR semester LIKE ? or kelas LIKE ?)";
+          $sql = "SELECT * FROM jadwal WHERE hari LIKE ? AND dosen LIKE ? AND (hari LIKE ? OR dosen LIKE ? OR matkul LIKE ? OR dosen LIKE ? OR ruang LIKE ? OR sks LIKE ? OR tahun_ajaran LIKE ? OR semester LIKE ? or kelas LIKE ?)";
           $sort = $conn -> prepare($sql);
-          $sort->bind_param('ssssssssss', $search_hari, $search_dosen, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword);
+          $sort->bind_param('sssssssssss', $search_hari, $search_dosen, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword);
           $sort->execute();
           $result = $sort->get_result();
           $nomor = 1; 
@@ -75,7 +75,7 @@
         }
          } else {
           echo '<tr> 
-          <td> No Data </td> 
+          <td> '.$nomor++.' </td> 
           <td> No Data </td> 
           <td> No Data </td> 
           <td> No Data </td> 

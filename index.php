@@ -1,9 +1,16 @@
 <?php
-require "function.php";
 require "check.php";
-require "data.php";
+require "excelUpload.php";
+require 'vendor/autoload.php';
+// Include librari PhpSpreadsheet
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
+
 error_reporting(E_ALL ^ E_WARNING);
 $conn = OpenCon();
+$tgl_sekarang = date('YmdHis'); // Ini akan mengambil waktu sekarang dengan format yyyymmddHHiiss
+$nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
+
 ?>
 
 <!DOCTYPE html>
@@ -66,8 +73,8 @@ $conn = OpenCon();
 </script>
 </head>
 
-<body class="m-0 bg-base-100 h-100%">
-  <div class="navbar bg-base-300 sticky top-0 z-50">
+<body class="m-0 p-0 bg-base-300 h-max">
+  <div class="navbar bg-base-100 sticky top-0 z-50">
     <div class="flex-1 text-white">
       <?php if ($LOGIN === true) { ?>
         <form id="logout-form" method="post" target="_self">
@@ -80,7 +87,7 @@ $conn = OpenCon();
     </div>
     <div class="flex-none gap-2">
       <form action="" method="POST">
-            <input type="text" placeholder="Search…" class="input input-bordered" aria-label="Search" name="s_keyword" id="s_keyword" autocomplete="off" />
+            <input type="text" placeholder="Search…" class="input input-bordered bg-base-300" aria-label="Search" name="s_keyword" id="s_keyword" autocomplete="off" />
       </form>
       </div>
     </div>
@@ -88,25 +95,26 @@ $conn = OpenCon();
   </div>
 
 
-  <div <?php if ($LOGIN === true) { ?>class="flex justify-center" <?php } ?> <?php if ($LOGIN === false) { ?>class="hidden" <?php } ?>>
-    <div class="flex  w-96 pt-10 pb-10 bg-base-300 shadow-xl m-10 justify-center rounded-3xl flex-col items-center">
-      <h1 class="text-xl">Admin Space</h1>
-      <br><br>
-      <input type="file" class="file-input file-input-bordered file-input-md w-full max-w-xs bg-white text-black" />
-
-      <div class="flex justify-start mt-8">
-        <form id="logout-form" method="post" target="_self">
-          <input type="submit" value="Submit" name="submit" <?php if ($LOGIN === true) { ?>class="text-white m-3 bg-slate-200 text-black p-3  rounded-xl shadow-lg hover:cursor-pointer" <?php } ?> <?php if ($LOGIN === false) { ?> class="hidden" <?php } ?>>
-      </div>
-      </form>
-    </div>
+  
 
 
   </div>
-  <div class="flex justify-center">
 
-  <form action="" method="POST">
+  
     <div class="option mt-3">
+    <div class="flex justify-start flex-row">
+    <div <?php if ($LOGIN === true) { ?>class="flex flex-col" <?php } ?> <?php if ($LOGIN === false) { ?>class="hidden" <?php } ?>>
+    <label class="m-3 text-lg">Upload Data Jadwal</label>
+    <form method="post" action="" enctype="multipart/form-data">  
+    <input type="file" name="file" class="form-control file-input file-input-md bg-base-100 text-white" />      
+    <input type='hidden' name='namafile' value="<?php $nama_file_baru ?> ">
+    
+    <input type="submit" name="submit" value="submit" <?php if ($LOGIN === true) { ?>class=" form-control ml-1 text-white text-sm bg-slate-200 text-black p-2 m-3 rounded-xl shadow-lg hover:cursor-pointer" <?php } ?> <?php if ($LOGIN === false) { ?> class="hidden" <?php } ?>>    
+      </form>
+    </div>
+      </div>
+      <div class="flex justify-center">
+        <form method="POST" action="">
           <select name="s_hari" id="s_hari" class="rounded-md bg-slate-200 text-black h-10 mr-3">
             <option value="">Hari</option>
             <option value="senin">Senin</option>
@@ -150,21 +158,21 @@ $conn = OpenCon();
             <option><button name="ti7a" class="dropdown-item">TI 7A</button></option>
             <option><button name="ti7b" class="dropdown-item">TI 7B</button></option>
       </select>
-     <button class="btn bg-slate-200 text-black" id="resetfilter">Reset</button>
-      </form>
+     <button class="btn pt-1 pb-1 bg-slate-200 text-black" id="resetfilter"> Reset </button>
+    </form>
     </div>
 
   </div>
 
-    <div class="flex justify-center overflow-y-scroll m-5" id="data"> </div>
+    <div class="flex justify-center overflow-y-scroll m-10 max-h-96" id="data"> </div>
 
-
+<br>
     <!-- ADMIN LOGIN -->
     <!-- The button to open modal -->
     <div id="login" <?php if ($LOGIN === true) { ?>class="hidden" <?php } ?>>
       <h4 class="text-slate-100 text-sm">You're an admin? </h4>
       <label for="my-modal-2" class="font-bold underline text-slate-300 hover cursor-pointer">Login</label>
-      <!-- Put this part before </body> tag -->
+
       <input type="checkbox" id="my-modal-2" class="modal-toggle" />
       <div class="modal" id="my-modal-2">
         <div class="modal-box text-slate-100 w-96">
@@ -186,7 +194,9 @@ $conn = OpenCon();
               <span>Password</span>
               <input type="password" class="input input-bordered" name="password" required>
             </label>
-            <input type="submit" value="login" class="text-white m-3 bg-black btn" name="login">
+            <div class="flex justify-end items-start">
+            <input type="submit" value="login" class="text-white m-3 bg-black btn mt-5" name="login">
+      </div>
           </form>
         </div>
       </div>
