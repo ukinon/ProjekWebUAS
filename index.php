@@ -2,9 +2,6 @@
 require "check.php";
 require "excelUpload.php";
 require 'vendor/autoload.php';
-// Include librari PhpSpreadsheet
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 error_reporting(E_ALL ^ E_WARNING);
 $conn = OpenCon();
@@ -22,6 +19,7 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/daisyui@2.38.1/dist/full.css" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" href="assets/himatik.png">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
   <title>Document</title>
@@ -112,22 +110,20 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
     </div>
   </div>
   </div>
-
-
-  
-
-
   </div>
 
+      <div class="text-5xl text-black flex justify-center m-3">Tabel Jadwal TIK </div>
   
     <div class="option mt-3">
-    <div <?php if ($LOGIN === true) { ?>class="flex flex-col items-center bg-slate-700 w-96 rounded-lg shadow-lg ml-10 mt-5" <?php } ?> <?php if ($LOGIN === false) { ?>class="hidden" <?php } ?>>
+    <div class="flex justify-center m-5 mr-16">
+    <div <?php if ($LOGIN === true) { ?>class="flex flex-col items-center bg-slate-700 w-96 rounded-lg shadow-lg mb-5 ml-10 mt-5" <?php } ?> <?php if ($LOGIN === false) { ?>class="hidden" <?php } ?>>
     <label class="m-3 ml-4 text-xl text-white">Upload Data Jadwal</label>
     <form class="flex flex-col" method="post" action="" enctype="multipart/form-data">  
     <input type="file" name="file" class="form-control file-input bg-slate-400 text-black  m-3" />          
-    <input type="submit" name="submit" value="submit" <?php if ($LOGIN === true) { ?>class="btn btn-wide btn-accent text-white border-white text-sm p-2 m-3 ml-10" <?php } ?> <?php if ($LOGIN === false) { ?> class="hidden" <?php } ?>>    
+    <input type="submit" name="submit" value="submit" <?php if ($LOGIN === true) { ?>class="btn btn-wide btn-accent text-white border-white text-sm p-2 m-3 ml-11" <?php } ?> <?php if ($LOGIN === false) { ?> class="hidden" <?php } ?>>    
       </form>
       </div>
+    </div>
       <div class="flex justify-center">
         <form method="POST" action="">
           <select name="s_hari" id="s_hari" class="rounded-md bg-base-200 text-white h-10 mr-3">
