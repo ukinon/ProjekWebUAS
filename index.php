@@ -25,10 +25,14 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
   <title>Document</title>
+</head>
 
-  <script>
+<body class="m-0 p-0 bg-slate-200 h-max">
+
+<script>
 	$(document).ready(function(){
-		load_data();
+    load_data();
+    load_page();
     function load_data(hari, dosen, matkul, keyword)
 		{
 			$.ajax({
@@ -41,6 +45,22 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
 				}
 			});
 	 	}
+   
+      function load_page(page){
+           $.ajax({
+                url:"dataJadwal.php",
+                method:"POST",
+                data:{halaman:page},
+                success:function(data){
+                     $('#data').html(data);
+                }
+           })
+      }
+      
+      $(document).on('click', '.halaman', function(){
+           var page = $(this).attr("id");
+           load_page(page);
+      });
     
 		$('#s_keyword').keyup(function(){
       var hari = $("#s_hari").val();
@@ -72,9 +92,7 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
 		});
 	});
 </script>
-</head>
 
-<body class="m-0 p-0 bg-base-300 h-max">
   <div class="navbar bg-base-100 sticky top-0 z-50">
     <div class="flex-1 text-white">
       <?php if ($LOGIN === true) { ?>
@@ -103,20 +121,16 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
 
   
     <div class="option mt-3">
-    <div class="flex justify-start flex-row">
-    <div <?php if ($LOGIN === true) { ?>class="flex flex-col" <?php } ?> <?php if ($LOGIN === false) { ?>class="hidden" <?php } ?>>
-    <label class="m-3 text-lg">Upload Data Jadwal</label>
-    <form method="post" action="" enctype="multipart/form-data">  
-    <input type="file" name="file" class="form-control file-input file-input-md bg-base-100 text-white" />      
-    <input type='hidden' name='namafile' value="<?php $nama_file_baru ?> ">
-    
-    <input type="submit" name="submit" value="submit" <?php if ($LOGIN === true) { ?>class=" form-control ml-1 text-white text-sm bg-slate-200 text-black p-2 m-3 rounded-xl shadow-lg hover:cursor-pointer" <?php } ?> <?php if ($LOGIN === false) { ?> class="hidden" <?php } ?>>    
+    <div <?php if ($LOGIN === true) { ?>class="flex flex-col items-center bg-slate-700 w-96 rounded-lg shadow-lg ml-10 mt-5" <?php } ?> <?php if ($LOGIN === false) { ?>class="hidden" <?php } ?>>
+    <label class="m-3 ml-4 text-xl text-white">Upload Data Jadwal</label>
+    <form class="flex flex-col" method="post" action="" enctype="multipart/form-data">  
+    <input type="file" name="file" class="form-control file-input bg-slate-400 text-black  m-3" />          
+    <input type="submit" name="submit" value="submit" <?php if ($LOGIN === true) { ?>class="btn btn-wide btn-accent text-white border-white text-sm p-2 m-3 ml-10" <?php } ?> <?php if ($LOGIN === false) { ?> class="hidden" <?php } ?>>    
       </form>
-    </div>
       </div>
       <div class="flex justify-center">
         <form method="POST" action="">
-          <select name="s_hari" id="s_hari" class="rounded-md bg-slate-200 text-black h-10 mr-3">
+          <select name="s_hari" id="s_hari" class="rounded-md bg-base-200 text-white h-10 mr-3">
             <option value="">Hari</option>
             <option value="senin">Senin</option>
             <option value="selasa">Selasa</option>
@@ -126,53 +140,57 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
             <option value="sabtu">Sabtu</option>
       </select>
 
-          <select tabindex="0" name="s_dosen" id="s_dosen" class="rounded-md bg-slate-200 text-black h-10 mr-3">
-          <option value=""> Dosen </option>  
-          <option value="ella">Ella</option>
+          <select tabindex="0" name="s_dosen" id="s_dosen" class="rounded-md bg-base-200 text-white h-10 mr-3">
+            <option value=""> Dosen </option>  
+            <option value="ella">Ella</option>
             <option value="adi">Adi</option>
             <option value="ayres">Ayres</option>
             <option value="dewi k">Dewi K</option>
-            <option><button name="Mera" class="dropdown-item">Mera</button></option>
-            <option><button name="Agus" class="dropdown-item">Agus</button></option>
-            <option><button name="Dewiyanti" class="dropdown-item">Dewiyanti</button></option>
-            <option><button name="Chandra" class="dropdown-item">Chandra</button></option>
-            <option><button name="Weldy" class="dropdown-item">Weldy</button></option>
+            <option value="ella">Mera<</option>
+            <option value="ella">Agus</option>
+            <option value="ella">Dewiyanti </option>
+            <option value="ella">Chandra </option>
+            <option value="ella">Weldy</option>
             <option value="anggi">Anggi</option>
-            <option><button name="Rasyid" class="dropdown-item">Rasyid</button></option>
-            <option><button name="Herlino" class="dropdown-item">Herlino</button></option>
-            <option><button name="Taufik" class="dropdown-item">Taufik</button></option>
-            <option><button name="Risna" class="dropdown-item">Risna</button></option>
-            <option><button name="Syamsi" class="dropdown-item">Syamsi</button></option>
-            <option><button name="Euis" class="dropdown-item">Euis</button></option>
-            <option><button name="Asep" class="dropdown-item">Asep</button></option>
-            <option><button name="Iklima" class="dropdown-item">Iklima</button></option>
-            <option><button name="Shinta" class="dropdown-item">Shinta</button></option>
-            <option><button name="Refirman" class="dropdown-item">Refirman</button></option>
+            <option value="ella">Rasyid</option>
+            <option value="ella">Herlino</option>
+            <option value="ella">Taufik</option>
+            <option value="ella">Risna</option>
+            <option value="ella">Syamsi</option>
+            <option value="ella">Euis</option>
+            <option value="ella">Asep</option>
+            <option value="ella">Iklima></option>
+            <option value="ella">Shinta</option>
+            <option value="ella">Refirman</option>
       </select>
 
-          <select tabindex="0" class="rounded-md bg-slate-200 text-black h-10 mr-3">
-            <option><button name="ti1a" class="dropdown-item">TI 1A</button></option>
-            <option><button name="ti1b" class="dropdown-item">TI 1B</button></option>
-            <option><button name="ti3a" class="dropdown-item">TI 3A</button></option>
-            <option><button name="ti3b" class="dropdown-item">TI 3B</button></option>
-            <option><button name="ti5a" class="dropdown-item">TI 5A</button></option>
-            <option><button name="ti7a" class="dropdown-item">TI 7A</button></option>
-            <option><button name="ti7b" class="dropdown-item">TI 7B</button></option>
+          <select tabindex="0" class="rounded-md bg-base-200 text-white h-10 mr-3">
+            <option value ="">Kelas</option>
+            <option>TI 1A</option>
+            <option>TI 1B</option>
+            <option>TI 3A</option>
+            <option>TI 3B</option>
+            <option>TI 5A</option>
+            <option>TI 7A</option>
+            <option>TI 7B</option>
       </select>
-     <button class="btn pt-1 pb-1 bg-slate-200 text-black" id="resetfilter"> Reset </button>
+     <button class="btn pt-1 pb-1 bg-base-200 text-white" id="resetfilter"> Reset </button>
     </form>
     </div>
 
   </div>
 
-    <div class="flex justify-center overflow-y-scroll m-10 max-h-96" id="data"> </div>
+    <div class="flex justify-center flex-col m-10 mb-3" id="data"> </div>
+
+    
+    
 
 <br>
     <!-- ADMIN LOGIN -->
     <!-- The button to open modal -->
-    <div id="login" <?php if ($LOGIN === true) { ?>class="hidden" <?php } ?>>
-      <h4 class="text-slate-100 text-sm">You're an admin? </h4>
-      <label for="my-modal-2" class="font-bold underline text-slate-300 hover cursor-pointer">Login</label>
+    <div id="login" class="ml-2 flex flex-row " <?php if ($LOGIN === true) { ?>class="hidden" <?php } ?>>
+      <h4 class="text-base-100 text-md">You're an admin? </h4>
+      <label for="my-modal-2" class="ml-2 mb-2 font-bold underline text-black hover cursor-pointer">Login</label>
 
       <input type="checkbox" id="my-modal-2" class="modal-toggle" />
       <div class="modal" id="my-modal-2">
