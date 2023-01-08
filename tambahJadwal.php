@@ -3,16 +3,12 @@ session_start();
 require 'function.php';
 
 
-// if (!isset($_SESSION['username'])) {
-//     header("Location: index.php");
-//     exit;
-// }
+if (!isset($_SESSION['username'])) {
+    header("Location: index.php");
+    exit;
+}
 
 if (isset($_POST["submit"])) {
-    // untuk mengecek apakah isset jalan 
-    //var_dump($_POST);
-
-
     //Cek apakah data berhasil di tambahkan / tidak
     if (tambah($_POST) > 0) {
         echo "<script> 

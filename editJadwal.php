@@ -18,10 +18,6 @@ $data = query("SELECT * FROM jadwal WHERE id = $id")[0];
 
 
 if (isset($_POST["submit"])) {
-
-
-    //echo ubah($_POST);
-
     //Cek apakah data berhasil di diubah / tidak
     if (ubah($_POST) > 0) {
         echo "<script> 
