@@ -9,12 +9,12 @@ if (isset($_SESSION['username'])) {
 }
 
 if (isset($_POST["login"])) {
- $user = $_POST['user'];
- $password = $_POST['password'];
+    $user = $_POST['user'];
+    $password = $_POST['password'];
 
- $sql = "SELECT * FROM users WHERE username='$user' AND password='$password'";
+    $sql = "SELECT * FROM users WHERE username='$user' AND password='$password'";
     $result = mysqli_query($conn, $sql);
-    
+
     if ($result->num_rows > 0) {
         $row = mysqli_fetch_assoc($result);
         $_SESSION['username'] = $row['username'];
