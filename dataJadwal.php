@@ -74,7 +74,7 @@ require 'check.php';
       if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
           $id = $row["id"];
-          $jam = $row["jam"];
+          $jam = substr( $row['jam'],0,5 );
           $matkul = $row["matkul"];
           $hari = $row["hari"];
           $dosen = $row["dosen"];

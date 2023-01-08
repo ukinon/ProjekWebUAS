@@ -123,7 +123,7 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
       <div <?php if ($LOGIN === true) { ?>class="flex flex-col items-center bg-slate-700 w-96 rounded-lg shadow-lg mb-5 ml-10 mt-5" <?php } ?> <?php if ($LOGIN === false) { ?>class="hidden" <?php } ?>>
         <label class="m-3 ml-4 text-xl text-white">Upload Data Jadwal</label>
         <form class="flex flex-col" method="post" action="" enctype="multipart/form-data">
-          <input type="file" name="file" class="form-control file-input bg-slate-400 text-black  m-3" />
+          <input type="file" name="file" class="form-control file-input bg-slate-400 text-black  m-3" accept=".json, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
           <input type="submit" name="submit" value="submit" <?php if ($LOGIN === true) { ?>class="btn btn-wide btn-accent bg-black text-white border-none text-sm p-2 m-3 ml-11" <?php } ?> <?php if ($LOGIN === false) { ?> class="hidden" <?php } ?>>
         </form>
       </div>
