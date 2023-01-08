@@ -8,12 +8,12 @@ require 'function.php';
 //     exit;
 // }
 
-if (isset($_POST['submit'])) {
+if (isset($_POST["submit"])) {
     // untuk mengecek apakah isset jalan 
-    // header("Location: index.php");
-    // exit;
+    //var_dump($_POST);
 
-    // Cek apakah data berhasil di tambahkan / tidak
+
+    //Cek apakah data berhasil di tambahkan / tidak
     if (tambah($_POST) > 0) {
         echo "<script> 
                 alert('Data Berhasil Ditambahkan');
@@ -53,45 +53,45 @@ if (isset($_POST['submit'])) {
                 <table>
                     <tr>
                         <td><label for="matkul">Mata Kuliah </label></td>
-                        <td><input type="text" name="matkul" id="matkul" placeholder="Nama Mata Kuliah" require autocomplete="off"></td>
+                        <td><input type="text" name="matkul" id="matkul" placeholder="Nama Mata Kuliah" required autocomplete="off"></td>
                     </tr>
                     <tr>
                         <td><label for="hari">Hari </label></td>
-                        <td><input type="text" name="hari" id="hari" placeholder="hari" require></td>
+                        <td><input type="text" name="hari" id="hari" placeholder="hari" required></td>
                     </tr>
                     <tr>
                         <td><label for="dosen">Dosen </label></td>
-                        <td><input type="text" name="dosen" id="dosen" require></td>
+                        <td><input type="text" name="dosen" id="dosen" required></td>
                     </tr>
                     <tr>
                         <td><label for="ruangan">Ruangan</label></td>
-                        <td><input type="text" name="ruangan" id="ruangan" placeholder="ruangan" require></input></td>
+                        <td><input type="text" name="ruangan" id="ruangan" placeholder="ruangan" required></input></td>
                     </tr>
                     <tr>
                         <td><label for="jam">Jam </label></td>
-                        <td><input type="time" name="jam" id="jam">
+                        <td><input type="time" name="jam" id="jam" required>
                         </td>
                     </tr>
                     <tr>
                         <td><label for="kelas">Kelas </label></td>
-                        <td><input type="text" name="kelas" id="kelas" require></td>
+                        <td><input type="text" name="kelas" id="kelas" required></td>
                     </tr>
                     <tr>
                         <td><label for="sks">Jumlah SKS </label></td>
-                        <td><input type="text" name="sks" id="sks" require></td>
+                        <td><input type="text" name="sks" id="sks" required></td>
                     </tr>
                     <tr>
                         <td><label for="semester">Semester </label></td>
-                        <td><input type="number" name="semester" id="semester" require></td>
+                        <td><input type="number" name="semester" id="semester" required></td>
                     </tr>
                     <tr>
                         <td><label for="tahunAjaran">Tahun Ajaran </label></td>
-                        <td><input type="date" name="tahunAjaran" id="tahunAjaran" require></td>
+                        <td><input type="date" name="tahunAjaran" id="tahunAjaran" required></td>
                     </tr>
 
 
                     <tr>
-                        <td><button type="button" name="submit" require>Tambah</button></td>
+                        <td><button type="submit" name="submit">Tambah</button></td>
                     </tr>
                 </table>
 

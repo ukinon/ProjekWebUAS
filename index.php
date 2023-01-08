@@ -148,22 +148,22 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
           <option value="adi">Adi</option>
           <option value="ayres">Ayres</option>
           <option value="dewi k">Dewi K</option>
-          <option value="ella">Mera<< /option>
-          <option value="ella">Agus</option>
-          <option value="ella">Dewiyanti </option>
-          <option value="ella">Chandra </option>
-          <option value="ella">Weldy</option>
+          <option value="mera">Mera<< /option>
+          <option value="agus">Agus</option>
+          <option value="dewiyanti">Dewiyanti </option>
+          <option value="chandra">Chandra </option>
+          <option value="weldy">Weldy</option>
           <option value="anggi">Anggi</option>
-          <option value="ella">Rasyid</option>
-          <option value="ella">Herlino</option>
-          <option value="ella">Taufik</option>
-          <option value="ella">Risna</option>
-          <option value="ella">Syamsi</option>
-          <option value="ella">Euis</option>
-          <option value="ella">Asep</option>
-          <option value="ella">Iklima></option>
-          <option value="ella">Shinta</option>
-          <option value="ella">Refirman</option>
+          <option value="rasyid">Rasyid</option>
+          <option value="herlino">Herlino</option>
+          <option value="taufik">Taufik</option>
+          <option value="risna">Risna</option>
+          <option value="syamsi">Syamsi</option>
+          <option value="euis">Euis</option>
+          <option value="asep">Asep</option>
+          <option value="iklima">Iklima></option>
+          <option value="shinta">Shinta</option>
+          <option value="refirman">Refirman</option>
         </select>
 
         <select tabindex="0" class="rounded-md bg-base-200 text-white h-10 mr-3">
@@ -181,9 +181,9 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
         <!-- Link untuk ke halaman tambah jadwal -->
         <?php
         if ($LOGIN == true) { ?>
-          <a href="tambahJadwal.php">
-            Tambah
-          </a>
+
+          <button class="btn pt-1 pb-1 bg-base-200 text-white"> <a href="tambahJadwal.php">Tambah </a> </button>
+
         <?php
         } ?>
 
