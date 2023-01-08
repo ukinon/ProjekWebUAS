@@ -45,7 +45,34 @@ if (isset($_POST['submit'])) {
     }
     echo "<script>alert('data berhasil diimport');</script>";
     unlink($path);
-  } else if ($ext != "xlsx") {
-    echo "<script> alert('file harus dalam bentuk .xslx!') </script>";
+  } 
+  else if($ext == 'json'){
+    move_uploaded_file($tmp_file, 'tmp/' . $nama_file_baru);
+    $json = file_get_contents("$path");
+    $data = json_decode($json, true);
+
+    foreach($data as $jadwal){
+      $jam = $jadwal["jam"];
+      $matkul = $jadwal["matkul"];
+      $hari = $jadwal["hari"];
+      $dosen = $jadwal["dosen"];
+      $ruang = $jadwal["ruang"];
+      $tahun_ajaran = $jadwal["tahun_ajaran"];
+      $sks = $jadwal["sks"];
+      $semester = $jadwal["semester"];
+      $kelas = $jadwal["kelas"];
+
+      $conn = OpenCon();
+
+      $query = "insert into jadwal(jam, matkul, hari, dosen, ruang, sks, tahun_ajaran, semester, kelas) values($jam ,'" . $matkul . "','" . $hari . "','" . $dosen . "','" . $ruang . "', $sks, $tahun_ajaran, $semester,'" . $kelas . "')";
+      $result = mysqli_query($conn, $query);
+    }
+    echo "<script>alert('data berhasil diimport');</script>";
+    unlink($path);
   }
+  else{
+    echo "<script> alert('file harus dalam bentuk .xslx atau .json!') </script>";
+  }
+
+ 
 }

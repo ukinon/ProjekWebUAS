@@ -18,8 +18,7 @@ function tambah($data)
 
     //query insert data
 
-    $tahunAjaran = date('Y', strtotime($tahun));
-    $query = "INSERT INTO jadwal VALUES ('','$jam','$matkul','$hari','$dosen','$ruangan','$sks','$tahunAjaran','$semester','$kelas') ";
+    $query = "INSERT INTO jadwal VALUES ('','$jam','$matkul','$hari','$dosen','$ruangan','$sks','$tahun','$semester','$kelas') ";
 
     mysqli_query($conn, $query);
 
@@ -44,7 +43,6 @@ function ubah($data)
 
 
     // query insert data 
-    $tahunAjaran = date('Y', strtotime($tahun));
     $query = "UPDATE jadwal SET 
                 matkul = '$matkul',
                 jam = '$jam',           
@@ -52,7 +50,7 @@ function ubah($data)
                 sks = '$sks',
                 hari = '$hari',
                 ruang = '$ruangan',
-                tahun_ajaran = '$tahunAjaran',           
+                tahun_ajaran = '$tahun',           
                 kelas = '$kelas',
                 semester = '$semester'
                 WHERE id = '$id'

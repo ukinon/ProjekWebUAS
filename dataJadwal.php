@@ -37,6 +37,7 @@ require 'check.php';
       <?php
       $s_hari = "";
       $s_dosen = "";
+      $s_kelas = "";
       $s_keyword = "";
 
       if (isset($_POST['keyword'])) {
@@ -48,13 +49,14 @@ require 'check.php';
       if (isset($_POST['dosen'])) {
         $s_dosen = $_POST['dosen'];
       }
-      if (isset($_POST['matkul'])) {
-        $s_matkul = $_POST['matkul'];
+      if (isset($_POST['kelas'])) {
+        $s_kelas = $_POST['kelas'];
       }
 
       $search_hari = '%' . $s_hari . '%';
       $search_keyword = '%' . $s_keyword . '%';
       $search_dosen = '%' . $s_dosen . '%';
+      $search_kelas = '%' . $s_kelas . '%';
 
       $conn = OpenCon();
 
@@ -63,9 +65,9 @@ require 'check.php';
       $halaman_awal = ($halaman - 1) * $batas;
       $nomor = $halaman_awal + 1;
 
-      $sql = "SELECT * FROM jadwal WHERE hari LIKE ? AND dosen LIKE ? AND (hari LIKE ? OR dosen LIKE ? OR matkul LIKE ? OR dosen LIKE ? OR ruang LIKE ? OR sks LIKE ? OR tahun_ajaran LIKE ? OR semester LIKE ? or kelas LIKE ?) limit $halaman_awal, $batas";
+      $sql = "SELECT * FROM jadwal WHERE hari LIKE ? AND dosen LIKE ? AND kelas LIKE ? AND (hari LIKE ? OR dosen LIKE ? OR matkul LIKE ? OR dosen LIKE ? OR ruang LIKE ? OR sks LIKE ? OR tahun_ajaran LIKE ? OR semester LIKE ? or kelas LIKE ?) limit $halaman_awal, $batas";
       $sort = $conn->prepare($sql);
-      $sort->bind_param('sssssssssss', $search_hari, $search_dosen, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword);
+      $sort->bind_param('ssssssssssss', $search_hari, $search_dosen, $search_kelas, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword);
       $sort->execute();
       $result = $sort->get_result();
 
@@ -139,12 +141,13 @@ $jumlah_data = mysqli_num_rows($query);
 $total_halaman = ceil($jumlah_data / $batas);
 
 ?>
+
+<!---Button Pagination--->
 <ul class="btn-group flex justify-center mt-5">
   <?php
   for ($x = 1; $x <= $total_halaman; $x++) {
-    $link_active = ($halaman == $x) ? ' active' : '';
   ?>
-    <li class="btn bg-slate-500 text-white border-none halaman <?php $link_active ?>" id="<?php echo $x ?>"><a><?php echo $x; ?></a></li>
+    <li class="btn no-animation bg-slate-500 text-white border-none halaman" id="<?php echo $x ?>"><a><?php echo $x; ?></a></li>
   <?php
   }
   ?>

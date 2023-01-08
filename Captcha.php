@@ -15,6 +15,7 @@ $font = 'The Golden Elephant.ttf';
 $size_font = 25;
 $kemiringan = rand(10, 20);
 
+
 // Menambahkan Garis to background
 for ($i = 0; $i < 10; $i++) {
     imageline($image, rand(0, 200), rand(0, 50), rand(0, 200), rand(0, 50), $white);

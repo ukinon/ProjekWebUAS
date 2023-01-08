@@ -32,14 +32,14 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
       load_data();
       load_page();
 
-      function load_data(hari, dosen, matkul, keyword) {
+      function load_data(hari, dosen, kelas, keyword) {
         $.ajax({
           method: "POST",
           url: "dataJadwal.php",
           data: {
             hari: hari,
             dosen: dosen,
-            matkul: matkul,
+            kelas: kelas,
             keyword: keyword
           },
           success: function(hasil) {
@@ -69,49 +69,47 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
       $('#s_keyword').keyup(function() {
         var hari = $("#s_hari").val();
         var dosen = $("#s_dosen").val();
-        var matkul = $("#s_matkul").val();
+        var kelas = $("#s_kelas").val();
         var keyword = $("#s_keyword").val();
-        load_data(hari, dosen, matkul, keyword);
+        load_data(hari, dosen, kelas, keyword);
       });
       $('#s_hari').change(function() {
         var hari = $("#s_hari").val();
         var dosen = $("#s_dosen").val();
-        var matkul = $("#s_matkul").val();
+        var kelas = $("#s_kelas").val();
         var keyword = $("#s_keyword").val();
-        load_data(hari, dosen, matkul, keyword);
+        load_data(hari, dosen, kelas, keyword);
       });
       $('#s_dosen').change(function() {
         var hari = $("#s_hari").val();
         var dosen = $("#s_dosen").val();
-        var matkul = $("#s_matkul").val();
+        var kelas = $("#s_kelas").val();
         var keyword = $("#s_keyword").val();
-        load_data(hari, dosen, matkul, keyword);
+        load_data(hari, dosen, kelas, keyword);
       });
-      $('#s_matkul').change(function() {
+      $('#s_kelas').change(function() {
         var hari = $("#s_hari").val();
         var dosen = $("#s_dosen").val();
-        var matkul = $("#s_matkul").val();
+        var kelas = $("#s_kelas").val();
         var keyword = $("#s_keyword").val();
-        load_data(hari, dosen, matkul, keyword);
+        load_data(hari, dosen, kelas, keyword);
       });
     });
   </script>
 
   <div class="navbar bg-base-100 sticky top-0 z-50">
     <div class="flex-1 text-white">
-      <?php if ($LOGIN === true) { ?>
-        <form id="logout-form" method="post" target="_self">
-          <input type="submit" value="Logout" name="logout" class="btn pd-3 bg-slate-200 text-black">
-        </form>
-      <?php } ?>
-      <?php if ($LOGIN === false) { ?>
         <h1 class="text-xl"> Jadwal TIK </h1>
-      <?php } ?>
     </div>
     <div class="flex-none gap-2">
       <form action="" method="POST">
         <input type="text" placeholder="Search…" class="input input-bordered bg-base-300" aria-label="Search" name="s_keyword" id="s_keyword" autocomplete="off" />
       </form>
+      <?php if ($LOGIN === true) { ?>
+        <form id="logout-form" method="post" target="_self">
+          <input type="submit" value="Logout" name="logout" class="btn bg-red-700 text-white">
+        </form>
+      <?php } ?>
     </div>
   </div>
   </div>
@@ -126,7 +124,7 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
         <label class="m-3 ml-4 text-xl text-white">Upload Data Jadwal</label>
         <form class="flex flex-col" method="post" action="" enctype="multipart/form-data">
           <input type="file" name="file" class="form-control file-input bg-slate-400 text-black  m-3" />
-          <input type="submit" name="submit" value="submit" <?php if ($LOGIN === true) { ?>class="btn btn-wide btn-accent text-white border-white text-sm p-2 m-3 ml-11" <?php } ?> <?php if ($LOGIN === false) { ?> class="hidden" <?php } ?>>
+          <input type="submit" name="submit" value="submit" <?php if ($LOGIN === true) { ?>class="btn btn-wide btn-accent bg-black text-white border-none text-sm p-2 m-3 ml-11" <?php } ?> <?php if ($LOGIN === false) { ?> class="hidden" <?php } ?>>
         </form>
       </div>
     </div>
@@ -148,7 +146,7 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
           <option value="adi">Adi</option>
           <option value="ayres">Ayres</option>
           <option value="dewi k">Dewi K</option>
-          <option value="mera">Mera<< /option>
+          <option value="mera">Mera </option>
           <option value="agus">Agus</option>
           <option value="dewiyanti">Dewiyanti </option>
           <option value="chandra">Chandra </option>
@@ -161,20 +159,21 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
           <option value="syamsi">Syamsi</option>
           <option value="euis">Euis</option>
           <option value="asep">Asep</option>
-          <option value="iklima">Iklima></option>
+          <option value="iklima">Iklima</option>
           <option value="shinta">Shinta</option>
           <option value="refirman">Refirman</option>
         </select>
 
-        <select tabindex="0" class="rounded-md bg-base-200 text-white h-10 mr-3">
+        <select tabindex="0" name="s_kelas" id="s_kelas" class="rounded-md bg-base-200 text-white h-10 mr-3">
           <option value="">Kelas</option>
-          <option>TI 1A</option>
-          <option>TI 1B</option>
-          <option>TI 3A</option>
-          <option>TI 3B</option>
-          <option>TI 5A</option>
-          <option>TI 7A</option>
-          <option>TI 7B</option>
+          <option value="ti1a">TI 1A</option>
+          <option value="ti1b">TI 1B</option>
+          <option value="ti3a">TI 3A</option>
+          <option value="ti3b">TI 3B</option>
+          <option value="ti5a">TI 5A</option>
+          <option value="ti5b">TI 5B</option>
+          <option value="ti7a">TI 7A</option>
+          <option value="ti7b">TI 7B</option>
         </select>
         <button class="btn pt-1 pb-1 bg-base-200 text-white" id="resetfilter"> Reset </button>
 
@@ -182,7 +181,7 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
         <?php
         if ($LOGIN == true) { ?>
 
-          <button class="btn pt-1 pb-1 bg-base-200 text-white"> <a href="tambahJadwal.php">Tambah </a> </button>
+          <a href="tambahJadwal.php" class="btn pt-1 pb-1 bg-blue-600 border-none ml-6 text-white">Tambah</a>
 
         <?php
         } ?>
