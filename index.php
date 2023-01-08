@@ -219,12 +219,20 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
             <span>Username</span>
             <input type="text" class="input input-bordered" name="user" required>
           </label>
+
           <label class="label">
             <span class="label-text">Your Password</span>
           </label>
           <label class="input-group">
             <span>Password</span>
             <input type="password" class="input input-bordered" name="password" required>
+          </label>
+          <label class="label">
+            <span class="label-text"><img src="Captcha.php" alt="captcha"></span>
+          </label>
+          <label class="input-group">
+            <span>Captcha</span>
+            <input type="text" class="input input-bordered" name="nilaiCaptcha" required>
           </label>
           <div class="flex justify-end items-start">
             <input type="submit" value="login" class="text-white m-3 bg-black btn mt-5" name="login">
