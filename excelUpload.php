@@ -24,21 +24,22 @@ if (isset($_POST['submit'])) {
     $numrow = 1;
     foreach ($sheet as $row) {
 
-      $jam = $row['A'];
-      $matkul = $row['B'];
-      $hari = $row['C'];
-      $dosen = $row['D'];
-      $ruang = $row['E'];
-      $sks = $row['F'];
-      $tahun_ajaran = $row['G'];
-      $semester = $row['H'];
-      $kelas = $row['I'];
+      $jam_awal = $row['A'];
+      $jam_akhir = $row['B'];
+      $matkul = $row['C'];
+      $hari = $row['D'];
+      $dosen = $row['E'];
+      $ruang = $row['F'];
+      $sks = $row['G'];
+      $tahun_ajaran = $row['H'];
+      $semester = $row['I'];
+      $kelas = $row['J'];
 
-      if ($jam == "" && $matkul == "" && $hari == "" && $dosen == "" && $ruang == "" && $sks == "" && $tahun_ajaran == "" && $semester == "" && $kelas == "")
+      if ($jam_awal == "" && $jam_akhir == "" && $matkul == "" && $hari == "" && $dosen == "" && $ruang == "" && $sks == "" && $tahun_ajaran == "" && $semester == "" && $kelas == "")
         continue;
 
       if ($numrow > 1) {
-        $query = "insert into jadwal(jam, matkul, hari, dosen, ruang, sks, tahun_ajaran, semester, kelas) values($jam ,'" . $matkul . "','" . $hari . "','" . $dosen . "','" . $ruang . "', $sks, $tahun_ajaran, $semester,'" . $kelas . "')";
+        $query = "insert into jadwal(jam_awal, jam_akhir, matkul, hari, dosen, ruang, sks, tahun_ajaran, semester, kelas) values($jam_awal, $jam_akhir, '" . $matkul . "','" . $hari . "','" . $dosen . "','" . $ruang . "', $sks, $tahun_ajaran, $semester,'" . $kelas . "')";
         $result = mysqli_query($conn, $query);
       }
       $numrow++;
@@ -52,7 +53,8 @@ if (isset($_POST['submit'])) {
     $data = json_decode($json, true);
 
     foreach($data as $jadwal){
-      $jam = $jadwal["jam"];
+      $jam_awal = $jadwal["jam_awal"];
+      $jam_akhir = $jadwal["jam_akhir"];
       $matkul = $jadwal["matkul"];
       $hari = $jadwal["hari"];
       $dosen = $jadwal["dosen"];
@@ -64,7 +66,7 @@ if (isset($_POST['submit'])) {
 
       $conn = OpenCon();
 
-      $query = "insert into jadwal(jam, matkul, hari, dosen, ruang, sks, tahun_ajaran, semester, kelas) values($jam ,'" . $matkul . "','" . $hari . "','" . $dosen . "','" . $ruang . "', $sks, $tahun_ajaran, $semester,'" . $kelas . "')";
+      $query = "insert into jadwal(jam_awal, jam_akhir, matkul, hari, dosen, ruang, sks, tahun_ajaran, semester, kelas) values($jam_awal, $jam_akhir, '" . $matkul . "','" . $hari . "','" . $dosen . "','" . $ruang . "', $sks, $tahun_ajaran, $semester,'" . $kelas . "')";
       $result = mysqli_query($conn, $query);
     }
     echo "<script>alert('data berhasil diimport');</script>";

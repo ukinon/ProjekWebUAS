@@ -97,7 +97,7 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
     });
   </script>
 
-  <div class="navbar bg-base-100 sticky top-0 z-50">
+  <div class="navbar bg-base-100 sticky top-0 z-50 shadow-2xl">
     <div class="flex-1 text-white">
         <h1 class="text-xl"> Jadwal TIK </h1>
     </div>
@@ -231,7 +231,7 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
           </label>
           <label class="input-group">
             <span>Captcha</span>
-            <input type="text" class="input input-bordered" name="nilaiCaptcha" required>
+            <input type="text" class="input input-bordered bg-slate-700" name="nilaiCaptcha" required>
           </label>
           <div class="flex justify-end items-start">
             <input type="submit" value="login" class="text-white m-3 bg-black btn mt-5" name="login">

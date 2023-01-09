@@ -46,6 +46,12 @@ if (isset($_POST["submit"])) {
   <link rel="shortcut icon" href="assets/himatik.png">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <title>Document</title>
+
+  <style>
+::-webkit-calendar-picker-indicator{
+    filter: invert(1);
+}
+    </style>
 </head>
 
 <body class="bg-slate-200 w-full h-screen">
@@ -90,8 +96,10 @@ if (isset($_POST["submit"])) {
                     <td><input class="input m-1 input-sm bg-slate-200 text-black" type="text" name="ruangan" id="ruangan" placeholder="ruangan" required value="<?= $data["ruang"]; ?>"></input></td>
                 </tr>
                 <tr>
-                    <td><label for="jam" class="text-black">Jam </label></td>
-                    <td><input class="input m-1 input-sm bg-slate-200 text-black" type="time" name="jam" id="jam" required value="<?= $data["jam"]; ?>">
+                    <td><label for="jam_awal" class="text-black">Jam </label></td>
+                    <td class="text-black"><input class="input m-1 input-sm bg-slate-200 text-black" type="time" name="jam_awal" id="jam_awal" required value="<?= $data["jam_awal"]; ?>"> 
+                    -
+                    <input class="input m-1 input-sm bg-slate-200 text-black" type="time" name="jam_akhir" id="jam_akhir" required value="<?= $data["jam_akhir"]; ?>"> 
                     </td>
                 </tr>
                 <tr>

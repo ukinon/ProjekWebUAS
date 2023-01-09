@@ -65,16 +65,17 @@ require 'check.php';
       $halaman_awal = ($halaman - 1) * $batas;
       $nomor = $halaman_awal + 1;
 
-      $sql = "SELECT * FROM jadwal WHERE hari LIKE ? AND dosen LIKE ? AND kelas LIKE ? AND (hari LIKE ? OR dosen LIKE ? OR matkul LIKE ? OR dosen LIKE ? OR ruang LIKE ? OR sks LIKE ? OR tahun_ajaran LIKE ? OR semester LIKE ? or kelas LIKE ?) limit $halaman_awal, $batas";
+      $sql = "SELECT * FROM jadwal WHERE hari LIKE ? AND dosen LIKE ? AND kelas LIKE ? AND (jam_awal LIKE ? OR jam_akhir LIKE ? OR hari LIKE ? OR dosen LIKE ? OR matkul LIKE ? OR dosen LIKE ? OR ruang LIKE ? OR sks LIKE ? OR tahun_ajaran LIKE ? OR semester LIKE ? or kelas LIKE ?) limit $halaman_awal, $batas";
       $sort = $conn->prepare($sql);
-      $sort->bind_param('ssssssssssss', $search_hari, $search_dosen, $search_kelas, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword);
+      $sort->bind_param('ssssssssssssss', $search_hari, $search_dosen, $search_kelas, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword);
       $sort->execute();
       $result = $sort->get_result();
 
       if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
           $id = $row["id"];
-          $jam = substr( $row['jam'],0,5 );
+          $jam_awal = substr( $row['jam_awal'],0,5 );
+          $jam_akhir = substr( $row['jam_akhir'],0,5 );
           $matkul = $row["matkul"];
           $hari = $row["hari"];
           $dosen = $row["dosen"];
@@ -86,7 +87,7 @@ require 'check.php';
 
           echo '<tr> 
                         <td>' . $nomor++ . '</td>
-                        <td>' . $jam . '</td> 
+                        <td>' . $jam_awal . ' - '.$jam_akhir.'</td> 
                         <td>' . $matkul . '</td> 
                         <td>' . $hari . '</td> 
                         <td>' . $dosen . '</td> 

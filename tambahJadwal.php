@@ -81,9 +81,11 @@ if (isset($_POST["submit"])) {
                         <td><input class="input m-1 input-sm bg-slate-200 text-black" type="text" name="ruangan" id="ruangan" placeholder="ruangan" required></input></td>
                     </tr>
                     <tr>
-                        <td><label for="jam" class="text-black">Jam </label></td>
-                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="time" name="jam" id="jam" required>
-                        </td>
+                    <td><label for="jam_awal" class="text-black">Jam </label></td>
+                    <td class="text-black"><input class="input m-1 input-sm bg-slate-200 text-black" type="time" name="jam_awal" id="jam_awal" required value="<?= $data["jam_awal"]; ?>"> 
+                    -
+                    <input class="input m-1 input-sm bg-slate-200 text-black" type="time" name="jam_akhir" id="jam_akhir" required value="<?= $data["jam_akhir"]; ?>"> 
+                    </td>
                     </tr>
                     <tr>
                         <td><label for="kelas" class="text-black">Kelas </label></td>

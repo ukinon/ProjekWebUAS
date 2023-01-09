@@ -10,7 +10,8 @@ function tambah($data)
     $dosen = htmlspecialchars($data["dosen"]);
     $hari = htmlspecialchars($data["hari"]);
     $sks = htmlspecialchars($data["sks"]);
-    $jam = htmlspecialchars($data["jam"]);
+    $jam_awal = htmlspecialchars($data["jam_awal"]);
+    $jam_akhir = htmlspecialchars($data["jam_akhir"]);
     $tahun = htmlspecialchars($data["tahunAjaran"]);
     $kelas = htmlspecialchars($data["kelas"]);
     $ruangan = htmlspecialchars($data["ruangan"]);
@@ -18,7 +19,7 @@ function tambah($data)
 
     //query insert data
 
-    $query = "INSERT INTO jadwal VALUES ('','$jam','$matkul','$hari','$dosen','$ruangan','$sks','$tahun','$semester','$kelas') ";
+    $query = "INSERT INTO jadwal VALUES ('','$jam_awal', '$jam_akhir', '$matkul','$hari','$dosen','$ruangan','$sks','$tahun','$semester','$kelas') ";
 
     mysqli_query($conn, $query);
 
@@ -34,7 +35,8 @@ function ubah($data)
     $dosen = htmlspecialchars($data["dosen"]);
     $hari = htmlspecialchars($data["hari"]);
     $sks = htmlspecialchars($data["sks"]);
-    $jam = htmlspecialchars($data["jam"]);
+    $jam_awal = htmlspecialchars($data["jam_awal"]);
+    $jam_akhir = htmlspecialchars($data["jam_akhir"]);
     $tahun = htmlspecialchars($data["tahunAjaran"]);
     $kelas = htmlspecialchars($data["kelas"]);
     $ruangan = htmlspecialchars($data["ruangan"]);
@@ -45,7 +47,8 @@ function ubah($data)
     // query insert data 
     $query = "UPDATE jadwal SET 
                 matkul = '$matkul',
-                jam = '$jam',           
+                jam_awal = '$jam_awal',
+                jam_akhir = '$jam_akhir',           
                 dosen = '$dosen',
                 sks = '$sks',
                 hari = '$hari',
