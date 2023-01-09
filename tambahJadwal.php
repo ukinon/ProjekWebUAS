@@ -2,12 +2,6 @@
 session_start();
 require 'function.php';
 
-
-if (!isset($_SESSION['username'])) {
-    header("Location: index.php");
-    exit;
-}
-
 if (isset($_POST["submit"])) {
     //Cek apakah data berhasil di tambahkan / tidak
     if (tambah($_POST) > 0) {
@@ -38,6 +32,12 @@ if (isset($_POST["submit"])) {
   <link rel="shortcut icon" href="assets/himatik.png">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <title>Document</title>
+
+  <style>
+::-webkit-calendar-picker-indicator{
+    filter: invert(1);
+}
+    </style>
 </head>
     <script>
 
@@ -70,15 +70,15 @@ if (isset($_POST["submit"])) {
                     </tr>
                     <tr>
                         <td><label for="hari" class="text-black">Hari </label></td>
-                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="text" name="hari" id="hari" placeholder="hari" required></td>
+                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="text" name="hari" id="hari" placeholder="Hari" required></td>
                     </tr>
                     <tr>
                         <td><label for="dosen" class="text-black">Dosen </label></td>
-                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="text" name="dosen" id="dosen" required></td>
+                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="text" name="dosen" id="dosen" placeholder="Nama Dosen" required></td>
                     </tr>
                     <tr>
                         <td><label for="ruangan" class="text-black">Ruangan</label></td>
-                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="text" name="ruangan" id="ruangan" placeholder="ruangan" required></input></td>
+                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="text" name="ruangan" id="ruangan" placeholder="Ruangan" required></input></td>
                     </tr>
                     <tr>
                     <td><label for="jam_awal" class="text-black">Jam </label></td>
@@ -89,23 +89,23 @@ if (isset($_POST["submit"])) {
                     </tr>
                     <tr>
                         <td><label for="kelas" class="text-black">Kelas </label></td>
-                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="text" name="kelas" id="kelas" required></td>
+                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="text" name="kelas" id="kelas" placeholder="Kelas" required></td>
                     </tr>
                     <tr>
                         <td><label for="sks" class="text-black">Jumlah SKS </label></td>
-                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="text" name="sks" id="sks" required></td>
+                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="text" name="sks" id="sks" placeholder="SKS" required></td>
                     </tr>
                     <tr>
                         <td><label for="semester" class="text-black">Semester </label></td>
-                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="number" name="semester" id="semester" required></td>
+                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="number" name="semester" id="semester" placeholder="Semester" required></td>
                     </tr>
                     <tr>
                         <td><label for="tahunAjaran" class="text-black">Tahun Ajaran </label></td>
-                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="number" name="tahunAjaran" id="tahunAjaran" required></td>
+                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="number" name="tahunAjaran" id="tahunAjaran" placeholder="Tahun Ajaran" required></td>
                     </tr>
                 </table>
 
-<button type="submit" class="btn btn-wide btn-accent m-3 ml-5 mb-5 bg-black" name="submit">Tambah</button>
+<button type="submit" class="btn btn-wide btn-accent m-3 ml-8 mb-5 bg-black" name="submit">Tambah</button>
             </form>
 
     </div>

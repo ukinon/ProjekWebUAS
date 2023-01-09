@@ -119,7 +119,7 @@ if (isset($_POST["submit"])) {
                     <td><input class="input m-1 input-sm bg-slate-200 text-black" type="number" name="tahunAjaran" id="tahunAjaran" required value="<?= $data["tahun_ajaran"]; ?>"></td>
                 </tr>              
             </table>
-            <td><button type="submit" class="btn btn-wide btn-accent m-3 ml-5 mb-0 bg-black" name="submit">Ubah</button>
+            <td><button type="submit" class="btn btn-wide btn-accent m-3 ml-8 mb-0 bg-black" name="submit">Ubah</button>
         </form><br>
         </div>
     </div>
