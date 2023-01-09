@@ -10,7 +10,7 @@ if (isset($_SESSION['username'])) {
 
 if (isset($_POST["login"])) {
     $user = $_POST['user'];
-    $password = $_POST['password'];
+    $password = md5($_POST['password']);
     $captcha = $_POST['nilaiCaptcha'];
 
     $sql = "SELECT * FROM users WHERE username='$user' AND password='$password'";
