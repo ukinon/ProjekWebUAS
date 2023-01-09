@@ -116,8 +116,6 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
   </div>
   </div>
 
-  <div class="text-5xl text-black flex justify-center m-3">Tabel Jadwal TIK </div>
-
   <div class="option mt-3">
     <div class="flex justify-center m-5 mr-16">
       <div <?php if ($LOGIN === true) { ?>class="flex flex-col items-center bg-slate-700 w-96 rounded-lg shadow-lg mb-5 ml-10 mt-5" <?php } ?> <?php if ($LOGIN === false) { ?>class="hidden" <?php } ?>>
@@ -216,24 +214,23 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
           </label>
           <label class="input-group">
             <span>Username</span>
-            <input type="text" class="input input-bordered" name="user" required>
+            <input type="text" class="input input-bordered bg-slate-700"" name="user" required>
           </label>
-
           <label class="label">
             <span class="label-text">Your Password</span>
           </label>
           <label class="input-group">
             <span>Password</span>
-            <input type="password" class="input input-bordered" name="password" required>
+            <input type="password" class="input input-bordered bg-slate-700"" name="password" required>
           </label>
           <label class="label">
             <span class="label-text"><img src="Captcha.php" alt="captcha"></span>
           </label>
-          <label class="input-group">
-            <span>Captcha</span>
+          <label class="input-group">  
+          <span>Captcha</span>
             <input type="text" class="input input-bordered bg-slate-700" name="nilaiCaptcha" required>
           </label>
-          <div class="flex justify-end items-start">
+          <div class="flex justify-end">
             <input type="submit" value="login" class="text-white m-3 bg-black btn mt-5" name="login">
           </div>
         </form>
