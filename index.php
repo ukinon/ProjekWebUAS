@@ -97,7 +97,7 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
     });
   </script>
 
-  <div class="navbar bg-base-100 sticky top-0 z-50 shadow-2xl">
+  <div class="navbar bg-base-100 sticky top-0 z-50 shadow-sm shadow-gray-900">
     <div class="flex-1 text-white">
         <h1 class="text-xl"> Jadwal TIK </h1>
     </div>
