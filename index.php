@@ -22,7 +22,7 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
   <link rel="shortcut icon" href="assets/himatik.png">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
-  <title>Document</title>
+  <title>Jadwal TIK</title>
 </head>
 
 <body class="m-0 p-0 bg-slate-200 h-max">

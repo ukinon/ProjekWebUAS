@@ -45,7 +45,7 @@ if (isset($_POST["submit"])) {
   <link href="https://cdn.jsdelivr.net/npm/daisyui@2.38.1/dist/full.css" rel="stylesheet" type="text/css" />
   <link rel="shortcut icon" href="assets/himatik.png">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <title>Document</title>
+  <title>Edit Jadwal</title>
 
   <style>
 ::-webkit-calendar-picker-indicator{
