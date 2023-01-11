@@ -16,7 +16,7 @@ require 'check.php';
 
 <body>
   <table class="w-full text-black border-white table-compact shadow-lg text-center max-h-96 overflow-x-scroll">
-    <thead class="bg-slate-700 text-white sticky top-0">
+    <thead class="bg-indigo-400 text-white sticky top-0">
       <tr>
         <td class="w-10"> No </td>
         <td> Jam </td>
@@ -33,7 +33,7 @@ require 'check.php';
         <?php } ?>
       </tr>
     </thead>
-    <tbody class="bg-slate-300 text-black">
+    <tbody class="bg-slate-200 text-black">
       <?php
       $s_hari = "";
       $s_dosen = "";
@@ -148,7 +148,7 @@ $total_halaman = ceil($jumlah_data / $batas);
   <?php
   for ($x = 1; $x <= $total_halaman; $x++) {
   ?>
-    <li class="btn no-animation bg-slate-500 text-white border-none halaman" id="<?php echo $x ?>"><a><?php echo $x; ?></a></li>
+    <li class="btn no-animation bg-indigo-300 text-black border-none halaman" id="<?php echo $x ?>"><a><?php echo $x; ?></a></li>
   <?php
   }
   ?>

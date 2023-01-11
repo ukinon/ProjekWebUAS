@@ -44,41 +44,41 @@ if (isset($_POST["submit"])) {
     </script>
 </head>
 
-<body class="bg-slate-200 w-full h-screen">
+<body class="bg-slate-100 w-full h-screen">
 
-<div class="navbar bg-base-100 sticky top-0 z-50 mb-5">
+<div class="navbar bg-slate-50 sticky top-0 z-50 mb-5 shadow-md">
     <div class="mr-3 text-white">
-          <a href="index.php" value="Logout" name="logout" class="btn btn-circle bg-base-200 text-white"> 
+          <a href="index.php" value="Logout" name="logout" class="btn btn-circle bg-slate-100 text-black"> 
           <svg fill="none" class="w-6 h-6" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"></path>
 </svg>
              </a>
     </div>
-    <div class=" text-white">
+    <div class=" text-indigo-600 font-bold">
         <h1 class="text-xl"> Jadwal TIK </h1>
     </div>
     </div>
 
-    <div class="bg-slate-400 w-96 h-fit flex flex-col items-center rounded-2xl align-middle m-auto shadow-3xl">
+    <div class="bg-slate-300 shadow-lg w-96 h-fit flex flex-col items-center rounded-2xl align-middle m-auto shadow-3xl">
         <h4 class="m-3 text-3xl text-black">Tambah Jadwal</h4>
 
             <form action="" method="POST" enctype="multipart/form-data">
                 <table>
                     <tr>
                         <td><label for="matkul" class="text-black">Mata Kuliah </label></td>
-                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="text" name="matkul" id="matkul" placeholder="Nama Mata Kuliah" required autocomplete="off"></td>
+                        <td><input class="input m-1 w-52 input-sm bg-slate-200 text-black" type="text" name="matkul" id="matkul" placeholder="Nama Mata Kuliah" required autocomplete="off"></td>
                     </tr>
                     <tr>
                         <td><label for="hari" class="text-black">Hari </label></td>
-                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="text" name="hari" id="hari" placeholder="Hari" required></td>
+                        <td><input class="input m-1 w-52 input-sm bg-slate-200 text-black" type="text" name="hari" id="hari" placeholder="Hari" required></td>
                     </tr>
                     <tr>
                         <td><label for="dosen" class="text-black">Dosen </label></td>
-                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="text" name="dosen" id="dosen" placeholder="Nama Dosen" required></td>
+                        <td><input class="input m-1 w-52 input-sm bg-slate-200 text-black" type="text" name="dosen" id="dosen" placeholder="Nama Dosen" required></td>
                     </tr>
                     <tr>
                         <td><label for="ruangan" class="text-black">Ruangan</label></td>
-                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="text" name="ruangan" id="ruangan" placeholder="Ruangan" required></input></td>
+                        <td><input class="input m-1 w-52 input-sm bg-slate-200 text-black" type="text" name="ruangan" id="ruangan" placeholder="Ruangan" required></input></td>
                     </tr>
                     <tr>
                     <td><label for="jam_awal" class="text-black">Jam </label></td>
@@ -89,23 +89,23 @@ if (isset($_POST["submit"])) {
                     </tr>
                     <tr>
                         <td><label for="kelas" class="text-black">Kelas </label></td>
-                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="text" name="kelas" id="kelas" placeholder="Kelas" required></td>
+                        <td><input class="input m-1 input-sm w-52 bg-slate-200 text-black" type="text" name="kelas" id="kelas" placeholder="Kelas" required></td>
                     </tr>
                     <tr>
                         <td><label for="sks" class="text-black">Jumlah SKS </label></td>
-                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="text" name="sks" id="sks" placeholder="SKS" required></td>
+                        <td><input class="input m-1 w-52 input-sm bg-slate-200 text-black" type="text" name="sks" id="sks" placeholder="SKS" required></td>
                     </tr>
                     <tr>
                         <td><label for="semester" class="text-black">Semester </label></td>
-                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="number" name="semester" id="semester" placeholder="Semester" required></td>
+                        <td><input class="input m-1 input-sm w-52 bg-slate-200 text-black" type="number" name="semester" id="semester" placeholder="Semester" required></td>
                     </tr>
                     <tr>
                         <td><label for="tahunAjaran" class="text-black">Tahun Ajaran </label></td>
-                        <td><input class="input m-1 input-sm bg-slate-200 text-black" type="number" name="tahunAjaran" id="tahunAjaran" placeholder="Tahun Ajaran" required></td>
+                        <td><input class="input m-1 input-sm w-52 bg-slate-200 text-black" type="number" name="tahunAjaran" id="tahunAjaran" placeholder="Tahun Ajaran" required></td>
                     </tr>
                 </table>
 
-<button type="submit" class="btn btn-wide btn-accent m-3 ml-8 mb-5 bg-black" name="submit">Tambah</button>
+<button type="submit" class="btn btn-wide btn-accent m-3 ml-8 mb-5 bg-indigo-600 border-none" name="submit">Tambah</button>
             </form>
 
     </div>

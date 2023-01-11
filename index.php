@@ -11,7 +11,7 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-slate-100">
 
 <head>
   <meta charset="UTF-8">
@@ -25,7 +25,7 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
   <title>Jadwal TIK</title>
 </head>
 
-<body class="m-0 p-0 bg-slate-200 h-max">
+<body class="">
 
   <script>
     $(document).ready(function() {
@@ -97,17 +97,17 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
     });
   </script>
 
-  <div class="navbar bg-base-100 sticky top-0 z-50 shadow-sm shadow-gray-900">
-    <div class="flex-1 text-white">
-        <h1 class="text-xl"> Jadwal TIK </h1>
+  <div class="navbar bg-slate-50 sticky top-0 z-50 shadow-md">
+    <div class="flex-1 text-slate-800">
+        <h1 class="text-xl font-bold text-indigo-700"> Jadwal TIK </h1>
     </div>
     <div class="flex-none gap-2">
       <form action="" method="POST">
-        <input type="text" placeholder="Search…" class="input input-bordered bg-base-300" aria-label="Search" name="s_keyword" id="s_keyword" autocomplete="off" />
+        <input type="text" placeholder="Search…" class="input input-bordered border-slate-200 bg-slate-200 text-black" aria-label="Search" name="s_keyword" id="s_keyword" autocomplete="off" />
       </form>
       <?php if ($LOGIN === true) { ?>
         <form id="logout-form" method="post" target="_self">
-          <input type="submit" value="Logout" name="logout" class="btn bg-red-700 text-white">
+          <input type="submit" value="Logout" name="logout" class="btn bg-red-300 text-black border-none">
         </form>
       <?php } ?>
     </div>
@@ -118,17 +118,17 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
 
   <div class="option mt-3">
     <div class="flex justify-center m-5 mr-16">
-      <div <?php if ($LOGIN === true) { ?>class="flex flex-col items-center bg-slate-700 w-96 rounded-lg shadow-lg mb-5 ml-10 mt-5" <?php } ?> <?php if ($LOGIN === false) { ?>class="hidden" <?php } ?>>
-        <label class="m-3 ml-4 text-xl text-white">Upload Data Jadwal</label>
+      <div <?php if ($LOGIN === true) { ?>class="flex flex-col items-center bg-slate-300 w-96 rounded-lg shadow-lg mb-5 ml-10 mt-5" <?php } ?> <?php if ($LOGIN === false) { ?>class="hidden" <?php } ?>>
+        <label class="m-3 ml-4 text-xl text-black font-bold">Upload Data Jadwal</label>
         <form class="flex flex-col" method="post" action="" enctype="multipart/form-data">
-          <input type="file" name="file" class="form-control file-input bg-slate-400 text-black  m-3" accept=".json, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
-          <input type="submit" name="submit" value="submit" <?php if ($LOGIN === true) { ?>class="btn btn-wide btn-accent bg-black text-white border-none text-sm p-2 m-3 ml-11" <?php } ?> <?php if ($LOGIN === false) { ?> class="hidden" <?php } ?>>
+          <input type="file" name="file" class="input-bordered shadow-lg file-input file-input-accent bg-slate-200 text-black  m-3" accept=".json, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"/>
+          <button type="submit" name="submit" value="submit" <?php if ($LOGIN === true) { ?>class="btn btn-wide btn-accent bg-indigo-600 text-white border-none text-sm p-2 m-3 ml-11" <?php } ?> <?php if ($LOGIN === false) { ?> class="hidden" <?php } ?>> Upload </button>
         </form>
       </div>
     </div>
     <div class="flex justify-center">
       <form method="POST" action="">
-        <select name="s_hari" id="s_hari" class="rounded-md bg-base-200 text-white h-10 mr-3">
+        <select name="s_hari" id="s_hari" class="rounded-md text-center w-20 h-11 bg-indigo-300 text-black h-10 mr-3">
           <option value="">Hari</option>
           <option value="senin">Senin</option>
           <option value="selasa">Selasa</option>
@@ -138,7 +138,7 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
           <option value="sabtu">Sabtu</option>
         </select>
 
-        <select tabindex="0" name="s_dosen" id="s_dosen" class="rounded-md bg-base-200 text-white h-10 mr-3">
+        <select tabindex="0" name="s_dosen" id="s_dosen" class="rounded-md text-center w-24 h-11 bg-indigo-300 text-black h-10 mr-3">
           <option value=""> Dosen </option>
           <option value="ella">Ella</option>
           <option value="adi">Adi</option>
@@ -162,7 +162,7 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
           <option value="refirman">Refirman</option>
         </select>
 
-        <select tabindex="0" name="s_kelas" id="s_kelas" class="rounded-md bg-base-200 text-white h-10 mr-3">
+        <select tabindex="0" name="s_kelas" id="s_kelas" class="rounded-md text-center w-20 h-11 bg-indigo-300 text-black h-10 mr-3">
           <option value="">Kelas</option>
           <option value="ti1a">TI 1A</option>
           <option value="ti1b">TI 1B</option>
@@ -173,13 +173,13 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
           <option value="ti7a">TI 7A</option>
           <option value="ti7b">TI 7B</option>
         </select>
-        <button class="btn pt-1 pb-1 bg-base-200 text-white" id="resetfilter"> Reset </button>
+        <button class=" w-20 h-11 rounded-lg bg-violet-400 border-none text-black" id="resetfilter"> Reset </button>
 
         <!-- Link untuk ke halaman tambah jadwal -->
         <?php
         if ($LOGIN == true) { ?>
 
-          <a href="tambahJadwal.php" class="btn pt-1 pb-1 bg-blue-600 border-none ml-6 text-white">Tambah</a>
+          <a href="tambahJadwal.php" class="rounded-lg h-11 w-20 p-3 bg-teal-300 border-none ml-3 text-black"> Tambah  </a>
 
         <?php
         } ?>
@@ -204,34 +204,29 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
 
     <input type="checkbox" id="my-modal-2" class="modal-toggle" />
     <div class="modal" id="my-modal-2">
-      <div class="modal-box text-slate-100 w-96">
-        <label for="my-modal-2" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-
+      <div class="modal-box text-black w-96 bg-slate-300">
+        <label for="my-modal-2" class="btn btn-sm btn-circle absolute right-2 top-2 bg-red-600 text-black">✕</label>
         <form id="login-form" method="post" target="_self">
-          <h1>Admininstrator</h1>
-          <label class="label">
-            <span class="label-text">Your Username</span>
-          </label>
+          <h1 class="text-lg font-bold">Admininstrator</h1>
+        <br>
           <label class="input-group">
-            <span>Username</span>
-            <input type="text" class="input input-bordered bg-slate-700"" name="user" required>
+            <span class="bg-indigo-300">Username</span>
+            <input type="text" class="input w-full" name="user" required>
           </label>
-          <label class="label">
-            <span class="label-text">Your Password</span>
-          </label>
+          <br>
           <label class="input-group">
-            <span>Password</span>
-            <input type="password" class="input input-bordered bg-slate-700"" name="password" required>
+            <span class="bg-indigo-300">Password</span>
+            <input type="password" class="input w-full" name="password" required>
           </label>
-          <label class="label">
+          <label class="label mt-3">
             <span class="label-text"><img src="Captcha.php" alt="captcha"></span>
           </label>
-          <label class="input-group">  
-          <span>Captcha</span>
-            <input type="text" class="input input-bordered bg-slate-700" name="nilaiCaptcha" required>
+          <label class="input-group mt-3">  
+          <span class="bg-indigo-300">Captcha</span>
+            <input type="text" class="input w-full bg-slate-400 text-white" name="nilaiCaptcha" required>
           </label>
-          <div class="flex justify-end">
-            <input type="submit" value="login" class="text-white m-3 bg-black btn mt-5" name="login">
+          <div class="flex justify-end m-3 mr-0 mb-0">
+            <button type="submit" value="login" class=" bg-indigo-400 border-none w-24 text-black btn mt-5" name="login"> Login </button>
           </div>
         </form>
       </div>
