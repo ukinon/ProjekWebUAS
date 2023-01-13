@@ -6,7 +6,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 if (isset($_POST['submit'])) {
-  $nama_file_baru = isset($_FILES['file']['name']);
+  $nama_file_baru = $_FILES['file']['name'];
   $path = 'tmp/' . $nama_file_baru;
   if (is_file('tmp/' . $nama_file_baru))
     unlink('tmp/' . $nama_file_baru);
@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
 
 
   if ($ext == "xlsx") {
-    move_uploaded_file($tmp_file, 'tmp/' . $nama_file_baru);
+    move_uploaded_file($tmp_file, 'tmp/'. $nama_file_baru);
     $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
     $spreadsheet = $reader->load('tmp/' . $nama_file_baru);
     $sheet = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);

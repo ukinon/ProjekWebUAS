@@ -107,7 +107,7 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
       </form>
       <?php if ($LOGIN === true) { ?>
         <form id="logout-form" method="post" target="_self">
-          <input type="submit" value="Logout" name="logout" class="btn bg-red-300 text-black border-none">
+          <input type="submit" value="Logout" name="logout" class="btn bg-red-300 hover:bg-red-400 text-black border-none">
         </form>
       <?php } ?>
     </div>
@@ -173,13 +173,13 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
           <option value="ti7a">TI 7A</option>
           <option value="ti7b">TI 7B</option>
         </select>
-        <button class=" w-20 h-11 rounded-lg bg-violet-400 border-none text-black" id="resetfilter"> Reset </button>
+        <button class=" w-20 h-11 rounded-lg bg-violet-400 hover:bg-violet-500 border-none text-black" id="resetfilter"> Reset </button>
 
         <!-- Link untuk ke halaman tambah jadwal -->
         <?php
         if ($LOGIN == true) { ?>
 
-          <a href="tambahJadwal.php" class="rounded-lg h-11 w-20 p-3 bg-teal-300 border-none ml-3 text-black"> Tambah  </a>
+          <a href="tambahJadwal.php" class="rounded-lg h-11 w-20 p-3 bg-teal-300 hover:bg-teal-400 border-none ml-3 text-black"> Tambah  </a>
 
         <?php
         } ?>
@@ -190,7 +190,7 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
 
   </div>
 
-  <div class="flex justify-center flex-col m-10 mb-3" id="data"> </div>
+  <div class="flex justify-center flex-col m-10 mb-3 rounded-lg" id="data"> </div>
 
 
 
@@ -209,20 +209,20 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
         <form id="login-form" method="post" target="_self">
           <h1 class="text-lg font-bold">Admininstrator</h1>
         <br>
-          <label class="input-group">
+          <label class="input-group shadow-md">
             <span class="bg-indigo-300">Username</span>
             <input type="text" class="input w-full" name="user" required>
           </label>
           <br>
-          <label class="input-group">
+          <label class="input-group shadow-md">
             <span class="bg-indigo-300">Password</span>
             <input type="password" class="input w-full" name="password" required>
           </label>
           <label class="label mt-3">
             <span class="label-text"><img src="Captcha.php" alt="captcha"></span>
           </label>
-          <label class="input-group mt-3">  
-          <span class="bg-indigo-300">Captcha</span>
+          <label class="input-group mt-3 shadow-md">  
+          <span class="bg-indigo-300 w-28">Captcha</span>
             <input type="text" class="input w-full bg-slate-400 text-white" name="nilaiCaptcha" required>
           </label>
           <div class="flex justify-end m-3 mr-0 mb-0">

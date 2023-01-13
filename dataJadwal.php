@@ -130,12 +130,8 @@ require 'check.php';
       ?>
     </tbody>
   </table>
-</body>
 
-</html>
-
-
-<?php
+  <?php
 
 $query = mysqli_query($conn, "select * from jadwal");
 $jumlah_data = mysqli_num_rows($query);
@@ -148,8 +144,12 @@ $total_halaman = ceil($jumlah_data / $batas);
   <?php
   for ($x = 1; $x <= $total_halaman; $x++) {
   ?>
-    <li class="btn no-animation bg-indigo-300 text-black border-none halaman" id="<?php echo $x ?>"><a><?php echo $x; ?></a></li>
+    <li class="btn no-animation bg-indigo-300zz text-black border-none halaman" id="<?php echo $x ?>"><a><?php echo $x; ?></a></li>
   <?php
   }
   ?>
 </ul>
+</body>
+</html>
+
+
