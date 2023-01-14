@@ -32,7 +32,7 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
       load_data();
       load_page();
 
-      function load_data(hari, dosen, kelas, keyword) {
+      function load_data(hari, dosen, kelas, keyword, page) {
         $.ajax({
           method: "POST",
           url: "dataJadwal.php",
@@ -40,10 +40,11 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
             hari: hari,
             dosen: dosen,
             kelas: kelas,
-            keyword: keyword
+            keyword: keyword,
+            halaman: page
           },
-          success: function(hasil) {
-            $('#data').html(hasil);
+          success: function(data) {
+            $('#data').html(data);
           }
         });
       }
@@ -63,7 +64,11 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
 
       $(document).on('click', '.halaman', function() {
         var page = $(this).attr("id");
-        load_page(page);
+        var hari = $("#s_hari").val();
+        var dosen = $("#s_dosen").val();
+        var kelas = $("#s_kelas").val();
+        var keyword = $("#s_keyword").val();
+        load_data(hari, dosen, kelas, keyword, page);
       });
 
       $('#s_keyword').keyup(function() {
@@ -71,28 +76,28 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
         var dosen = $("#s_dosen").val();
         var kelas = $("#s_kelas").val();
         var keyword = $("#s_keyword").val();
-        load_data(hari, dosen, kelas, keyword);
+        load_data(hari, dosen, kelas, keyword, 1);
       });
       $('#s_hari').change(function() {
         var hari = $("#s_hari").val();
         var dosen = $("#s_dosen").val();
         var kelas = $("#s_kelas").val();
         var keyword = $("#s_keyword").val();
-        load_data(hari, dosen, kelas, keyword);
+        load_data(hari, dosen, kelas, keyword, 1);
       });
       $('#s_dosen').change(function() {
         var hari = $("#s_hari").val();
         var dosen = $("#s_dosen").val();
         var kelas = $("#s_kelas").val();
         var keyword = $("#s_keyword").val();
-        load_data(hari, dosen, kelas, keyword);
+        load_data(hari, dosen, kelas, keyword, 1);
       });
       $('#s_kelas').change(function() {
         var hari = $("#s_hari").val();
         var dosen = $("#s_dosen").val();
         var kelas = $("#s_kelas").val();
         var keyword = $("#s_keyword").val();
-        load_data(hari, dosen, kelas, keyword);
+        load_data(hari, dosen, kelas, keyword, 1);
       });
     });
   </script>

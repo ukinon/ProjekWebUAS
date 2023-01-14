@@ -132,11 +132,13 @@ require 'check.php';
   </table>
 
   <?php
-
-$query = mysqli_query($conn, "select * from jadwal");
-$jumlah_data = mysqli_num_rows($query);
+$sql = "SELECT * FROM jadwal WHERE hari LIKE ? AND dosen LIKE ? AND kelas LIKE ? AND (jam_awal LIKE ? OR jam_akhir LIKE ? OR hari LIKE ? OR dosen LIKE ? OR matkul LIKE ? OR dosen LIKE ? OR ruang LIKE ? OR sks LIKE ? OR tahun_ajaran LIKE ? OR semester LIKE ? or kelas LIKE ?)";
+$sort = $conn->prepare($sql);
+$sort->bind_param('ssssssssssssss', $search_hari, $search_dosen, $search_kelas, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword);
+$sort->execute();
+$sort -> store_result();
+$jumlah_data = $sort -> num_rows();
 $total_halaman = ceil($jumlah_data / $batas);
-
 ?>
 
 <!---Button Pagination--->
@@ -144,7 +146,7 @@ $total_halaman = ceil($jumlah_data / $batas);
   <?php
   for ($x = 1; $x <= $total_halaman; $x++) {
   ?>
-    <li class="btn no-animation bg-indigo-300zz text-black border-none halaman" id="<?php echo $x ?>"><a><?php echo $x; ?></a></li>
+    <li class="btn no-animation bg-indigo-300 text-black border-none halaman" id="<?php echo $x ?>"><a><?php echo $x; ?></a></li>
   <?php
   }
   ?>
