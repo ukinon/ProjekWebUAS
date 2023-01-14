@@ -142,11 +142,13 @@ $total_halaman = ceil($jumlah_data / $batas);
 ?>
 
 <!---Button Pagination--->
-<ul class="btn-group flex justify-center mt-5">
+<ul class="btn-group flex justify-center mt-8">
   <?php
   for ($x = 1; $x <= $total_halaman; $x++) {
   ?>
-    <li class="btn no-animation bg-indigo-300 text-black border-none halaman" id="<?php echo $x ?>"><a><?php echo $x; ?></a></li>
+    <li <?php if($x != $halaman) { ?>class="btn no-animation bg-indigo-300 hover:bg-indigo-400 active:bg-indigo-500 text-black border-none halaman" <?php }?>
+   <?php if($x == $halaman) { ?>class="btn no-animation bg-indigo-400 hover:bg-indigo-400 active:bg-indigo-500 text-black border-none halaman" <?php }?>
+    id="<?php echo $x ?>"> <a><?php echo $x; ?></a> </li>
   <?php
   }
   ?>
