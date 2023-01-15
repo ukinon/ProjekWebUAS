@@ -30,8 +30,6 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
   <script>
     $(document).ready(function() {
       load_data();
-      load_page();
-
       function load_data(hari, dosen, kelas, keyword, page) {
         $.ajax({
           method: "POST",
@@ -49,21 +47,24 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
         });
       }
 
-      function load_page(page) {
-        $.ajax({
-          url: "dataJadwal.php",
-          method: "POST",
-          data: {
-            halaman: page
-          },
-          success: function(data) {
-            $('#data').html(data);
-          }
-        })
-      }
-
-      $(document).on('click', '.halaman', function() {
-        var page = $(this).attr("id");
+      $(document).on('change', '#halaman', function() {
+        var page = $(this).val();
+        var hari = $("#s_hari").val();
+        var dosen = $("#s_dosen").val();
+        var kelas = $("#s_kelas").val();
+        var keyword = $("#s_keyword").val();
+        load_data(hari, dosen, kelas, keyword, page);
+      });
+      $(document).on('click', '#next', function() {
+        var page = parseInt($("#halaman").val()) + 1;
+        var hari = $("#s_hari").val();
+        var dosen = $("#s_dosen").val();
+        var kelas = $("#s_kelas").val();
+        var keyword = $("#s_keyword").val();
+        load_data(hari, dosen, kelas, keyword, page);
+      });
+      $(document).on('click', '#prev', function() {
+        var page = parseInt($("#halaman").val()) - 1;
         var hari = $("#s_hari").val();
         var dosen = $("#s_dosen").val();
         var kelas = $("#s_kelas").val();
@@ -169,22 +170,22 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
 
         <select tabindex="0" name="s_kelas" id="s_kelas" class="rounded-md text-center w-20 h-11 bg-indigo-300 text-black h-10 mr-3">
           <option value="">Kelas</option>
-          <option value="ti1a">TI 1A</option>
-          <option value="ti1b">TI 1B</option>
-          <option value="ti3a">TI 3A</option>
-          <option value="ti3b">TI 3B</option>
-          <option value="ti5a">TI 5A</option>
-          <option value="ti5b">TI 5B</option>
-          <option value="ti7a">TI 7A</option>
-          <option value="ti7b">TI 7B</option>
+          <option value="ti 1 a">TI 1A</option>
+          <option value="ti 1 b">TI 1B</option>
+          <option value="ti 3 a">TI 3A</option>
+          <option value="ti 3 b">TI 3B</option>
+          <option value="ti 5 a">TI 5A</option>
+          <option value="ti 5 b">TI 5B</option>
+          <option value="ti 7 a">TI 7A</option>
+          <option value="ti 7 b">TI 7B</option>
         </select>
-        <button class=" w-20 h-11 rounded-lg bg-violet-400 hover:bg-violet-500 border-none text-black" id="resetfilter"> Reset </button>
+        <button class=" btn rounded-lg bg-violet-400 hover:bg-violet-500 active:scale-75 border-none text-black" id="resetfilter"> Reset </button>
 
         <!-- Link untuk ke halaman tambah jadwal -->
         <?php
         if ($LOGIN == true) { ?>
 
-          <a href="tambahJadwal.php" class="rounded-lg h-11 w-20 p-3 bg-teal-300 hover:bg-teal-400 border-none ml-3 text-black"> Tambah  </a>
+          <a href="tambahJadwal.php" class="rounded-lg btn bg-teal-300 hover:bg-teal-400 border-none ml-3 text-black"> Tambah  </a>
 
         <?php
         } ?>
@@ -214,24 +215,24 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
         <form id="login-form" method="post" target="_self">
           <h1 class="text-lg font-bold">Admininstrator</h1>
         <br>
-          <label class="input-group shadow-md">
+          <label class="input-group">
             <span class="bg-indigo-300">Username</span>
-            <input type="text" class="input w-full" name="user" required>
+            <input type="text" class="input w-full focus:shadow-md bg-slate-400 text-white" name="user" required>
           </label>
           <br>
-          <label class="input-group shadow-md">
+          <label class="input-group ">
             <span class="bg-indigo-300">Password</span>
-            <input type="password" class="input w-full" name="password" required>
+            <input type="password" class="input w-full focus:shadow-md shadow-black bg-slate-400 text-white" name="password" required>
           </label>
           <label class="label mt-3">
             <span class="label-text"><img src="Captcha.php" alt="captcha"></span>
           </label>
-          <label class="input-group mt-3 shadow-md">  
+          <label class="input-group mt-3">  
           <span class="bg-indigo-300 w-28">Captcha</span>
-            <input type="text" class="input w-full bg-slate-400 text-white" name="nilaiCaptcha" required>
+            <input type="text" class="input w-full bg-slate-400 text-white focus:shadow-md" name="nilaiCaptcha" required>
           </label>
           <div class="flex justify-end m-3 mr-0 mb-0">
-            <button type="submit" value="login" class=" bg-indigo-400 border-none w-24 text-black btn mt-5" name="login"> Login </button>
+            <button type="submit" value="login" class=" bg-indigo-400 hover:bg-indigo-500 border-none w-24 text-black btn mt-5" name="login"> Login </button>
           </div>
         </form>
       </div>

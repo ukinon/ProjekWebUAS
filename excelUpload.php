@@ -24,27 +24,26 @@ if (isset($_POST['submit'])) {
     $numrow = 1;
     foreach ($sheet as $row) {
 
-      $jam_awal = $row['A'];
-      $jam_akhir = $row['B'];
-      $matkul = $row['C'];
-      $hari = $row['D'];
-      $dosen = $row['E'];
-      $ruang = $row['F'];
-      $sks = $row['G'];
-      $tahun_ajaran = $row['H'];
-      $semester = $row['I'];
-      $kelas = $row['J'];
+      $slot_waktu = $row['A'];
+      $matkul = $row['B'];
+      $hari = $row['C'];
+      $dosen = $row['D'];
+      $ruang = $row['E'];
+      $jumlah_jam = $row['F'];
+      $tahun_ajaran = $row['G'];
+      $semester = $row['H'];
+      $kelas = $row['I'];
 
-      if ($jam_awal == "" && $jam_akhir == "" && $matkul == "" && $hari == "" && $dosen == "" && $ruang == "" && $sks == "" && $tahun_ajaran == "" && $semester == "" && $kelas == "")
+      if ($slot_waktu == "" && $matkul == "" && $hari == "" && $dosen == "" && $ruang == "" && $jumlah_jam == "" && $tahun_ajaran == "" && $semester == "" && $kelas == "")
         continue;
 
       if ($numrow > 1) {
-        $query = "insert into jadwal(jam_awal, jam_akhir, matkul, hari, dosen, ruang, sks, tahun_ajaran, semester, kelas) values($jam_awal, $jam_akhir, '" . $matkul . "','" . $hari . "','" . $dosen . "','" . $ruang . "', $sks, $tahun_ajaran, $semester,'" . $kelas . "')";
+        $query = "insert into jadwal(slot_waktu, matkul, hari, dosen, ruang, jumlah_jam, tahun_ajaran, semester, kelas) values('" . $slot_waktu . "', '" . $matkul . "','" . $hari . "','" . $dosen . "','" . $ruang . "', $jumlah_jam, '" .$tahun_ajaran. "', '" .$semester. "','" . $kelas . "')";
         $result = mysqli_query($conn, $query);
       }
       $numrow++;
     }
-    echo "<script>alert('data berhasil diimport');</script>";
+    echo "<script>alert('data berhasil diimport'); location.href='index.php'</script>";
     unlink($path);
   } 
   else if($ext == 'json'){
@@ -53,28 +52,26 @@ if (isset($_POST['submit'])) {
     $data = json_decode($json, true);
 
     foreach($data as $jadwal){
-      $jam_awal = $jadwal["jam_awal"];
-      $jam_akhir = $jadwal["jam_akhir"];
+      $slot_waktu = $jadwal["slot_waktu"];
       $matkul = $jadwal["matkul"];
       $hari = $jadwal["hari"];
       $dosen = $jadwal["dosen"];
       $ruang = $jadwal["ruang"];
       $tahun_ajaran = $jadwal["tahun_ajaran"];
-      $sks = $jadwal["sks"];
+      $jumlah_jam = $jadwal["jumlah_jam"];
       $semester = $jadwal["semester"];
       $kelas = $jadwal["kelas"];
 
       $conn = OpenCon();
 
-      $query = "insert into jadwal(jam_awal, jam_akhir, matkul, hari, dosen, ruang, sks, tahun_ajaran, semester, kelas) values($jam_awal, $jam_akhir, '" . $matkul . "','" . $hari . "','" . $dosen . "','" . $ruang . "', $sks, $tahun_ajaran, $semester,'" . $kelas . "')";
+      $query = "insert into jadwal(slot_waktu, matkul, hari, dosen, ruang, jumlah_jam, tahun_ajaran, semester, kelas) values($jam_awal, $jam_akhir, '" . $matkul . "','" . $hari . "','" . $dosen . "','" . $ruang . "', $jumlah_jam, $tahun_ajaran, $semester,'" . $kelas . "')";
       $result = mysqli_query($conn, $query);
     }
-    echo "<script>alert('data berhasil diimport');</script>";
+    echo "<script>alert('data berhasil diimport'); location.href='index.php'</script>";
     unlink($path);
   }
   else{
-    echo "<script> alert('file harus dalam bentuk .xslx atau .json!') </script>";
+    echo "<script> alert('file harus dalam bentuk .xslx atau .json!') location.href='index.php' </script>";
   }
-
  
 }

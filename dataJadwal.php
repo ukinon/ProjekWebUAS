@@ -24,7 +24,7 @@ require 'check.php';
         <td> Hari </td>
         <td> Dosen </td>
         <td> Ruang </td>
-        <td> SKS </td>
+        <td> Jumlah Jam </td>
         <td> Tahun Ajaran </td>
         <td> Semester </td>
         <td> Kelas </td>
@@ -65,34 +65,33 @@ require 'check.php';
       $halaman_awal = ($halaman - 1) * $batas;
       $nomor = $halaman_awal + 1;
 
-      $sql = "SELECT * FROM jadwal WHERE hari LIKE ? AND dosen LIKE ? AND kelas LIKE ? AND (jam_awal LIKE ? OR jam_akhir LIKE ? OR hari LIKE ? OR dosen LIKE ? OR matkul LIKE ? OR dosen LIKE ? OR ruang LIKE ? OR sks LIKE ? OR tahun_ajaran LIKE ? OR semester LIKE ? or kelas LIKE ?) limit $halaman_awal, $batas";
+      $sql = "SELECT * FROM jadwal WHERE hari LIKE ? AND dosen LIKE ? AND kelas LIKE ? AND (slot_waktu LIKE ? OR hari LIKE ? OR dosen LIKE ? OR matkul LIKE ? OR dosen LIKE ? OR ruang LIKE ? OR jumlah_jam LIKE ? OR tahun_ajaran LIKE ? OR semester LIKE ? or kelas LIKE ?) limit $halaman_awal, $batas";
       $sort = $conn->prepare($sql);
-      $sort->bind_param('ssssssssssssss', $search_hari, $search_dosen, $search_kelas, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword);
+      $sort->bind_param('sssssssssssss', $search_hari, $search_dosen, $search_kelas, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword);
       $sort->execute();
       $result = $sort->get_result();
 
       if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
           $id = $row["id"];
-          $jam_awal = substr( $row['jam_awal'],0,5 );
-          $jam_akhir = substr( $row['jam_akhir'],0,5 );
+          $slot_waktu = $row["slot_waktu"];
           $matkul = $row["matkul"];
           $hari = $row["hari"];
           $dosen = $row["dosen"];
           $ruang = $row["ruang"];
-          $sks = $row["sks"];
+          $jumlah_jam = $row["jumlah_jam"];
           $tahun = $row["tahun_ajaran"];
           $semester = $row["semester"];
           $kelas = $row["kelas"];
 
           echo '<tr> 
                         <td>' . $nomor++ . '</td>
-                        <td>' . $jam_awal . ' - '.$jam_akhir.'</td> 
+                        <td>' . $slot_waktu .'</td> 
                         <td>' . $matkul . '</td> 
                         <td>' . $hari . '</td> 
                         <td>' . $dosen . '</td> 
                         <td>' . $ruang . '</td> 
-                        <td>' . $sks . '</td> 
+                        <td>' . $jumlah_jam . '</td> 
                         <td>' . $tahun . '</td> 
                         <td>' . $semester . '</td> 
                         <td>' . $kelas . '</td>'
@@ -131,28 +130,37 @@ require 'check.php';
     </tbody>
   </table>
 
-  <?php
-$sql = "SELECT * FROM jadwal WHERE hari LIKE ? AND dosen LIKE ? AND kelas LIKE ? AND (jam_awal LIKE ? OR jam_akhir LIKE ? OR hari LIKE ? OR dosen LIKE ? OR matkul LIKE ? OR dosen LIKE ? OR ruang LIKE ? OR sks LIKE ? OR tahun_ajaran LIKE ? OR semester LIKE ? or kelas LIKE ?)";
+  <!-- <?php
+$sql = "SELECT * FROM jadwal WHERE hari LIKE ? AND dosen LIKE ? AND kelas LIKE ? AND (slot_waktu LIKE ?  OR hari LIKE ? OR dosen LIKE ? OR matkul LIKE ? OR dosen LIKE ? OR ruang LIKE ? OR jumlah_jam LIKE ? OR tahun_ajaran LIKE ? OR semester LIKE ? or kelas LIKE ?)";
 $sort = $conn->prepare($sql);
-$sort->bind_param('ssssssssssssss', $search_hari, $search_dosen, $search_kelas, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword);
+$sort->bind_param('sssssssssssss', $search_hari, $search_dosen, $search_kelas, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword);
 $sort->execute();
 $sort -> store_result();
 $jumlah_data = $sort -> num_rows();
 $total_halaman = ceil($jumlah_data / $batas);
-?>
+?> -->
 
 <!---Button Pagination--->
-<ul class="btn-group flex justify-center mt-8">
+<div class="flex justify-center flex-row">
+  <button id="prev" <?php if($halaman == 1) {?> 
+  disabled class="h-10 w-20  rounded-lg mt-8 mr-3 bg-indigo-200 text-black border-none cursor-not-allowed"
+  <?php }?>
+  class="h-10 w-20 hover:bg-indigo-400 active:bg-indigo-500 rounded-lg mt-8 mr-3 bg-indigo-300 text-black border-none">Previous</button>
+<select class="btn-group w-20 h-10 bg-indigo-300 text-black rounded-lg text-center mt-8" id="halaman">
   <?php
   for ($x = 1; $x <= $total_halaman; $x++) {
   ?>
-    <li <?php if($x != $halaman) { ?>class="btn no-animation bg-indigo-300 hover:bg-indigo-400 active:bg-indigo-500 text-black border-none halaman" <?php }?>
-   <?php if($x == $halaman) { ?>class="btn no-animation bg-indigo-400 hover:bg-indigo-400 active:bg-indigo-500 text-black border-none halaman" <?php }?>
-    id="<?php echo $x ?>"> <a><?php echo $x; ?></a> </li>
+    <option value="<?php echo $x ?>" <?php if($x == $halaman){echo "selected";} ?>> <a><?php echo $x; ?></a> </option>
   <?php
   }
   ?>
-</ul>
+</select>
+<button id="next" 
+<?php if($halaman == $total_halaman) {?> 
+  disabled class="h-10 w-20  rounded-lg mt-8 ml-3 bg-indigo-200 text-black border-none cursor-not-allowed"
+  <?php }?> 
+class="h-10 w-20 hover:bg-indigo-400 active:bg-indigo-500 rounded-lg mt-8 ml-3 bg-indigo-300 text-black border-none">Next</button>
+</div>
 </body>
 </html>
 

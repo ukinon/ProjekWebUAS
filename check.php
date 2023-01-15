@@ -19,12 +19,13 @@ if (isset($_POST["login"])) {
         if ($result->num_rows > 0) {
             $row = mysqli_fetch_assoc($result);
             $_SESSION['username'] = $row['username'];
+            header('Location: index.php');
             $LOGIN = true;
         } else {
-            echo "<script>alert('Email atau password Anda salah. Silahkan coba lagi!')</script>";
+            echo "<script>alert('Email atau password Anda salah. Silahkan coba lagi!'); location.href='index.php'</script>";
         }
-    } else {
-        echo "<script>alert('captcha salah')</script>";
+    } else{
+        echo "<script>alert('captcha salah'); location.href='index.php'</script>";
     }
 }
 
