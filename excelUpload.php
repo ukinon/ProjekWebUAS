@@ -7,18 +7,18 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 if (isset($_POST['submit'])) {
   $nama_file_baru = $_FILES['file']['name'];
-  $path = 'tmp/' . $nama_file_baru;
-  if (is_file('tmp/' . $nama_file_baru))
-    unlink('tmp/' . $nama_file_baru);
+  $path = 'temp/' . $nama_file_baru;
+  if (is_file('temp/' . $nama_file_baru))
+    unlink('temp/' . $nama_file_baru);
 
   $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
   $tmp_file = $_FILES['file']['tmp_name'];
 
 
   if ($ext == "xlsx") {
-    move_uploaded_file($tmp_file, 'tmp/'. $nama_file_baru);
+    move_uploaded_file($tmp_file, 'temp/'. $nama_file_baru);
     $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-    $spreadsheet = $reader->load('tmp/' . $nama_file_baru);
+    $spreadsheet = $reader->load('temp/' . $nama_file_baru);
     $sheet = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
 
     $numrow = 1;
@@ -47,7 +47,7 @@ if (isset($_POST['submit'])) {
     unlink($path);
   } 
   else if($ext == 'json'){
-    move_uploaded_file($tmp_file, 'tmp/' . $nama_file_baru);
+    move_uploaded_file($tmp_file, 'temp/' . $nama_file_baru);
     $json = file_get_contents("$path");
     $data = json_decode($json, true);
 
