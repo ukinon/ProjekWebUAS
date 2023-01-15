@@ -106,6 +106,7 @@ require 'check.php';
           }
         }
       } else {
+        $halaman = 0;
         echo '<tr> 
           <td> ' . $nomor++ . ' </td> 
           <td> No Data </td> 
@@ -142,7 +143,7 @@ $total_halaman = ceil($jumlah_data / $batas);
 
 <!---Button Pagination--->
 <div class="flex justify-center flex-row">
-  <button id="prev" <?php if($halaman == 1) {?> 
+  <button id="prev" <?php if($halaman <= 1) {?> 
   disabled class="h-10 w-20  rounded-lg mt-8 mr-3 bg-indigo-200 text-black border-none cursor-not-allowed"
   <?php }?>
   class="h-10 w-20 hover:bg-indigo-400 active:bg-indigo-500 rounded-lg mt-8 mr-3 bg-indigo-300 text-black border-none">Previous</button>
