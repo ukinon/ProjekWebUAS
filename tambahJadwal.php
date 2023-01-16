@@ -21,7 +21,7 @@ if (isset($_POST["submit"])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-slate-100">
 
 <head>
 <meta charset="UTF-8">
@@ -44,7 +44,7 @@ if (isset($_POST["submit"])) {
     </script>
 </head>
 
-<body class="bg-slate-100 w-full h-screen">
+<body class="w-full h-screen">
 
 <div class="navbar bg-slate-50 sticky top-0 z-50 mb-5 shadow-md">
     <div class="mr-3 text-white">
@@ -82,27 +82,27 @@ if (isset($_POST["submit"])) {
                     </tr>
                     <tr>
                     <td><label for="jam_awal" class="text-black">Jam </label></td>
-                    <td class="text-black"><input class="input m-1 input-sm bg-slate-200 text-black" type="time" name="jam_awal" id="jam_awal" required value="<?= $data["jam_awal"]; ?>"> 
+                    <td class="text-black"><input class="text-center input m-1 input-sm bg-slate-200 w-24 text-black" type="text" name="jam_awal" id="jam_awal" required> 
                     -
-                    <input class="input m-1 input-sm bg-slate-200 text-black" type="time" name="jam_akhir" id="jam_akhir" required value="<?= $data["jam_akhir"]; ?>"> 
+                    <input class="text-center input m-1 input-sm bg-slate-200 text-black w-24" type="text" name="jam_akhir" id="jam_akhir" required> 
                     </td>
-                    </tr>
-                    <tr>
-                        <td><label for="kelas" class="text-black">Kelas </label></td>
-                        <td><input class="input m-1 input-sm w-52 bg-slate-200 text-black" type="text" name="kelas" id="kelas" placeholder="Kelas" required></td>
-                    </tr>
-                    <tr>
-                        <td><label for="sks" class="text-black">Jumlah SKS </label></td>
-                        <td><input class="input m-1 w-52 input-sm bg-slate-200 text-black" type="text" name="sks" id="sks" placeholder="SKS" required></td>
-                    </tr>
-                    <tr>
-                        <td><label for="semester" class="text-black">Semester </label></td>
-                        <td><input class="input m-1 input-sm w-52 bg-slate-200 text-black" type="number" name="semester" id="semester" placeholder="Semester" required></td>
-                    </tr>
-                    <tr>
-                        <td><label for="tahunAjaran" class="text-black">Tahun Ajaran </label></td>
-                        <td><input class="input m-1 input-sm w-52 bg-slate-200 text-black" type="number" name="tahunAjaran" id="tahunAjaran" placeholder="Tahun Ajaran" required></td>
-                    </tr>
+                </tr>
+                <tr>
+                    <td><label for="kelas" class="text-black">Kelas </label></td>
+                    <td><input class="input m-1 input-sm  w-52 bg-slate-200 text-black" type="text" name="kelas" id="kelas" required></td>
+                </tr>
+                <tr>
+                    <td><label for="sks" class="text-black">Jumlah SKS </label></td>
+                    <td><input class="input m-1 input-sm  w-52 bg-slate-200 text-black" type="text" name="jumlah_jam" id="jumlah_jam" required></td>
+                </tr>
+                <tr>
+                    <td><label for="semester" class="text-black">Semester </label></td>
+                    <td><input class="input m-1 input-sm  w-52 bg-slate-200 text-black" type="text" name="semester" id="semester" required></td>
+                </tr>
+                <tr>
+                    <td><label for="tahunAjaran" class="text-black">Tahun Ajaran </label></td>
+                    <td><input class="input m-1 input-sm  w-52 bg-slate-200 text-black" type="text" name="tahunAjaran" id="tahunAjaran" required></td>
+                </tr>              
                 </table>
 
 <button type="submit" class="btn btn-wide btn-accent m-3 ml-8 mb-5 bg-indigo-600 border-none" name="submit">Tambah</button>

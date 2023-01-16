@@ -15,7 +15,8 @@ require 'check.php';
 </head>
 
 <body>
-  <table class="w-full text-black border-white table-compact shadow-lg text-center max-h-96 overflow-x-scroll">
+  <div class="flex justify-start md:justify-center lg:justify-center overflow-auto h-96 w-full mr-0 ml-0 md:h-full lg:h-full shadow-md">
+  <table class="w-full text-black border-white table-compact text-center">
     <thead class="bg-indigo-400 text-white sticky top-0">
       <tr>
         <td class="w-10"> No </td>
@@ -130,7 +131,7 @@ require 'check.php';
       ?>
     </tbody>
   </table>
-
+  </div>
   <!-- <?php
 $sql = "SELECT * FROM jadwal WHERE hari LIKE ? AND dosen LIKE ? AND kelas LIKE ? AND (slot_waktu LIKE ?  OR hari LIKE ? OR dosen LIKE ? OR matkul LIKE ? OR dosen LIKE ? OR ruang LIKE ? OR jumlah_jam LIKE ? OR tahun_ajaran LIKE ? OR semester LIKE ? or kelas LIKE ?)";
 $sort = $conn->prepare($sql);

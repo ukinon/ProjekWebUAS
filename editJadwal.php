@@ -35,7 +35,7 @@ if (isset($_POST["submit"])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-slate-100">
 
 <head>
 <meta charset="UTF-8">
@@ -54,7 +54,7 @@ if (isset($_POST["submit"])) {
     </style>
 </head>
 
-<body class="bg-slate-200 w-full h-screen">
+<body class="w-full h-screen">
 <div class="navbar bg-slate-50 sticky top-0 z-50 mb-5 shadow-md">
     <div class="mr-3 text-white">
           <a href="index.php" value="Logout" name="logout" class="btn btn-circle hover:bg-slate-200 bg-slate-100 text-black"> 
@@ -97,9 +97,9 @@ if (isset($_POST["submit"])) {
                 </tr>
                 <tr>
                     <td><label for="jam_awal" class="text-black">Jam </label></td>
-                    <td class="text-black"><input class="input m-1 input-sm bg-slate-200 text-black" type="time" name="jam_awal" id="jam_awal" required value="<?= $data["jam_awal"]; ?>"> 
+                    <td class="text-black"><input class="text-center input m-1 input-sm bg-slate-200 w-24 text-black" type="text" name="jam_awal" id="jam_awal" required value="<?= substr($data["slot_waktu"], 0, 5); ?>"> 
                     -
-                    <input class="input m-1 input-sm bg-slate-200 text-black" type="time" name="jam_akhir" id="jam_akhir" required value="<?= $data["jam_akhir"]; ?>"> 
+                    <input class="text-center input m-1 input-sm bg-slate-200 text-black w-24" type="text" name="jam_akhir" id="jam_akhir" required value="<?= substr($data["slot_waktu"], 8); ?>"> 
                     </td>
                 </tr>
                 <tr>
@@ -107,16 +107,16 @@ if (isset($_POST["submit"])) {
                     <td><input class="input m-1 input-sm  w-52 bg-slate-200 text-black" type="text" name="kelas" id="kelas" required value="<?= $data["kelas"]; ?>"></td>
                 </tr>
                 <tr>
-                    <td><label for="sks" class="text-black">Jumlah SKS </label></td>
-                    <td><input class="input m-1 input-sm  w-52 bg-slate-200 text-black" type="text" name="sks" id="sks" required value="<?= $data["sks"]; ?>"></td>
+                    <td><label for="sks" class="text-black">Jumlah Jam </label></td>
+                    <td><input class="input m-1 input-sm  w-52 bg-slate-200 text-black" type="text" name="jumlah_jam" id="jumlah_jam" required value="<?= $data["jumlah_jam"]; ?>"></td>
                 </tr>
                 <tr>
                     <td><label for="semester" class="text-black">Semester </label></td>
-                    <td><input class="input m-1 input-sm  w-52 bg-slate-200 text-black" type="number" name="semester" id="semester" required value="<?= $data["semester"]; ?>"></td>
+                    <td><input class="input m-1 input-sm  w-52 bg-slate-200 text-black" type="text" name="semester" id="semester" required value="<?= $data["semester"]; ?>"></td>
                 </tr>
                 <tr>
                     <td><label for="tahunAjaran" class="text-black">Tahun Ajaran </label></td>
-                    <td><input class="input m-1 input-sm  w-52 bg-slate-200 text-black" type="number" name="tahunAjaran" id="tahunAjaran" required value="<?= $data["tahun_ajaran"]; ?>"></td>
+                    <td><input class="input m-1 input-sm  w-52 bg-slate-200 text-black" type="text" name="tahunAjaran" id="tahunAjaran" required value="<?= $data["tahun_ajaran"]; ?>"></td>
                 </tr>              
             </table>
             <td><button type="submit" class="btn btn-wide btn-accent m-3 ml-8 mb-0 bg-indigo-600 border-none" name="submit">Ubah</button>

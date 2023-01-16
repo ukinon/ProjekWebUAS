@@ -132,8 +132,8 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
         </form>
       </div>
     </div>
-    <div class="flex justify-center">
-      <form method="POST" action="">
+    <div class="flex justify-center flex-col">
+      <form class="flex justify-center flex-wrap-reverse gap-5 md:gap-0 lg:gap-0 <?php if($LOGIN == false){ echo "gap-0"; } ?>" method="POST" action="">
         <select name="s_hari" id="s_hari" class="rounded-md text-center w-20 h-11 bg-indigo-300 text-black h-10 mr-3">
           <option value="">Hari</option>
           <option value="senin">Senin</option>
@@ -196,7 +196,7 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
 
   </div>
 
-  <div class="flex justify-center flex-col m-10 mb-3 rounded-lg" id="data"> </div>
+  <div class="flex justify-center ml-0 mr-0 flex-col m-10 mb-3 md:ml-10 lg:ml-10 md:mr-10 lg:mr-10 rounded-lg" id="data"> </div>
 
 
 
