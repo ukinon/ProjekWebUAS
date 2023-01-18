@@ -64,7 +64,7 @@ if (isset($_POST['submit'])) {
 
       $conn = OpenCon();
 
-      $query = "insert into jadwal(slot_waktu, matkul, hari, dosen, ruang, jumlah_jam, tahun_ajaran, semester, kelas) values($jam_awal, $jam_akhir, '" . $matkul . "','" . $hari . "','" . $dosen . "','" . $ruang . "', $jumlah_jam, $tahun_ajaran, $semester,'" . $kelas . "')";
+      $query = "insert into jadwal(slot_waktu, matkul, hari, dosen, ruang, jumlah_jam, tahun_ajaran, semester, kelas) values('" . $slot_waktu . "', '" . $matkul . "','" . $hari . "','" . $dosen . "','" . $ruang . "', $jumlah_jam, $tahun_ajaran, $semester,'" . $kelas . "')";
       $result = mysqli_query($conn, $query);
     }
     echo "<script>alert('data berhasil diimport'); location.href='index.php'</script>";
