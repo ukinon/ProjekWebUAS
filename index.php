@@ -211,7 +211,7 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
     <input type="checkbox" id="my-modal-2" class="modal-toggle" />
     <div class="modal" id="my-modal-2">
       <div class="modal-box text-black w-96 bg-slate-300">
-        <label for="my-modal-2" class="btn btn-sm btn-circle absolute right-2 top-2 bg-red-600 text-black">✕</label>
+        <label for="my-modal-2" class="btn btn-sm btn-circle absolute right-2 top-2 bg-transparent hover:bg-slate-400 text-black">✕</label>
         <form id="login-form" method="post" target="_self">
           <h1 class="text-lg font-bold">Admininstrator</h1>
         <br>
