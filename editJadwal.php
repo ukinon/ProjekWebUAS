@@ -55,7 +55,7 @@ if (isset($_POST["submit"])) {
 </head>
 
 <body class="w-full h-screen">
-<div class="navbar bg-slate-50 sticky top-0 z-50 mb-5 shadow-md">
+<div class="navbar bg-slate-50 sticky top-0 z-50 shadow-md">
     <div class="mr-3 text-white">
           <a href="index.php" value="Logout" name="logout" class="btn btn-circle hover:bg-slate-200 bg-slate-100 text-black"> 
           <svg fill="none" class="w-6 h-6" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -68,7 +68,7 @@ if (isset($_POST["submit"])) {
     </div>
     </div>
 
-    <div class="flex justify-center align-middle">
+    <div class="flex h-full align-middle">
         <div class="bg-slate-300 shadow-lg w-96 h-fit  flex flex-col items-center rounded-2xl align-middle m-auto shadow-3xl">
         <h1 class="m-3 text-3xl text-black">Edit Jadwal</h1>
         <form action="" method="post" enctype="multipart/form-data">
