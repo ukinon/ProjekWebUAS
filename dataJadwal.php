@@ -39,7 +39,9 @@ require 'check.php';
       $s_hari = "";
       $s_dosen = "";
       $s_kelas = "";
+      $s_ruang = "";
       $s_keyword = "";
+      $s_matkul = "";
 
       if (isset($_POST['keyword'])) {
         $s_keyword = $_POST['keyword'];
@@ -53,11 +55,19 @@ require 'check.php';
       if (isset($_POST['kelas'])) {
         $s_kelas = $_POST['kelas'];
       }
+      if (isset($_POST['ruang'])) {
+        $s_ruang = $_POST['ruang'];
+      }
+      if (isset($_POST['matkul'])) {
+        $s_matkul = $_POST['matkul'];
+      }
 
       $search_hari = '%' . $s_hari . '%';
       $search_keyword = '%' . $s_keyword . '%';
       $search_dosen = '%' . $s_dosen . '%';
       $search_kelas = '%' . $s_kelas . '%';
+      $search_ruang = '%' . $s_ruang . '%';
+      $search_matkul = '%' . $s_matkul . '%';
 
       $conn = OpenCon();
 
@@ -66,9 +76,9 @@ require 'check.php';
       $halaman_awal = ($halaman - 1) * $batas;
       $nomor = $halaman_awal + 1;
 
-      $sql = "SELECT * FROM jadwal WHERE hari LIKE ? AND dosen LIKE ? AND kelas LIKE ? AND (slot_waktu LIKE ? OR hari LIKE ? OR dosen LIKE ? OR matkul LIKE ? OR dosen LIKE ? OR ruang LIKE ? OR jumlah_jam LIKE ? OR tahun_ajaran LIKE ? OR semester LIKE ? or kelas LIKE ?) limit $halaman_awal, $batas";
+      $sql = "SELECT * FROM jadwal WHERE hari LIKE ? AND dosen LIKE ? AND kelas LIKE ? AND ruang LIKE ? AND matkul LIKE ? AND (slot_waktu LIKE ? OR hari LIKE ? OR dosen LIKE ? OR matkul LIKE ? OR dosen LIKE ? OR ruang LIKE ? OR jumlah_jam LIKE ? OR tahun_ajaran LIKE ? OR semester LIKE ? or kelas LIKE ?) limit $halaman_awal, $batas";
       $sort = $conn->prepare($sql);
-      $sort->bind_param('sssssssssssss', $search_hari, $search_dosen, $search_kelas, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword);
+      $sort->bind_param('sssssssssssssss', $search_hari, $search_dosen, $search_kelas, $search_ruang, $search_matkul, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword);
       $sort->execute();
       $result = $sort->get_result();
 
@@ -133,9 +143,9 @@ require 'check.php';
   </table>
   </div>
   <!-- <?php
-$sql = "SELECT * FROM jadwal WHERE hari LIKE ? AND dosen LIKE ? AND kelas LIKE ? AND (slot_waktu LIKE ?  OR hari LIKE ? OR dosen LIKE ? OR matkul LIKE ? OR dosen LIKE ? OR ruang LIKE ? OR jumlah_jam LIKE ? OR tahun_ajaran LIKE ? OR semester LIKE ? or kelas LIKE ?)";
+$sql = "SELECT * FROM jadwal WHERE hari LIKE ? AND dosen LIKE ? AND kelas LIKE ? AND ruang LIKE ? AND matkul LIKE ? AND (slot_waktu LIKE ?  OR hari LIKE ? OR dosen LIKE ? OR matkul LIKE ? OR dosen LIKE ? OR ruang LIKE ? OR jumlah_jam LIKE ? OR tahun_ajaran LIKE ? OR semester LIKE ? or kelas LIKE ?)";
 $sort = $conn->prepare($sql);
-$sort->bind_param('sssssssssssss', $search_hari, $search_dosen, $search_kelas, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword);
+$sort->bind_param('sssssssssssssss', $search_hari, $search_dosen, $search_kelas, $search_ruang, $search_matkul, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword, $search_keyword);
 $sort->execute();
 $sort -> store_result();
 $jumlah_data = $sort -> num_rows();

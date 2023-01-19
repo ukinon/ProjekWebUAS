@@ -5,8 +5,6 @@ require 'vendor/autoload.php';
 
 error_reporting(E_ALL ^ E_WARNING);
 $conn = OpenCon();
-$tgl_sekarang = date('YmdHis'); // Ini akan mengambil waktu sekarang dengan format yyyymmddHHiiss
-$nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
 
 ?>
 
@@ -25,12 +23,12 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
   <title>Jadwal TIK</title>
 </head>
 
-<body class="">
+<body>
 
   <script>
     $(document).ready(function() {
       load_data();
-      function load_data(hari, dosen, kelas, keyword, page) {
+      function load_data(hari, dosen, kelas, ruang, matkul, keyword, page) {
         $.ajax({
           method: "POST",
           url: "dataJadwal.php",
@@ -38,7 +36,9 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
             hari: hari,
             dosen: dosen,
             kelas: kelas,
+            ruang: ruang,
             keyword: keyword,
+            matkul: matkul,
             halaman: page
           },
           success: function(data) {
@@ -50,55 +50,87 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
       $(document).on('change', '#halaman', function() {
         var page = $(this).val();
         var hari = $("#s_hari").val();
+        var matkul = $("#s_matkul").val();
+        var ruang = $("#s_ruang").val();
         var dosen = $("#s_dosen").val();
         var kelas = $("#s_kelas").val();
         var keyword = $("#s_keyword").val();
-        load_data(hari, dosen, kelas, keyword, page);
+        load_data(hari, dosen, kelas, ruang, matkul, keyword, page);
       });
       $(document).on('click', '#next', function() {
         var page = parseInt($("#halaman").val()) + 1;
         var hari = $("#s_hari").val();
+        var matkul = $("#s_matkul").val();
+        var ruang = $("#s_ruang").val();
         var dosen = $("#s_dosen").val();
         var kelas = $("#s_kelas").val();
         var keyword = $("#s_keyword").val();
-        load_data(hari, dosen, kelas, keyword, page);
+        load_data(hari, dosen, kelas, ruang, matkul, keyword, page);
       });
       $(document).on('click', '#prev', function() {
         var page = parseInt($("#halaman").val()) - 1;
         var hari = $("#s_hari").val();
+        var matkul = $("#s_matkul").val();
+        var ruang = $("#s_ruang").val();
         var dosen = $("#s_dosen").val();
         var kelas = $("#s_kelas").val();
         var keyword = $("#s_keyword").val();
-        load_data(hari, dosen, kelas, keyword, page);
+        load_data(hari, dosen, kelas, ruang, matkul, keyword, page);
       });
 
       $('#s_keyword').keyup(function() {
         var hari = $("#s_hari").val();
+        var matkul = $("#s_matkul").val();
+        var ruang = $("#s_ruang").val();
         var dosen = $("#s_dosen").val();
         var kelas = $("#s_kelas").val();
         var keyword = $("#s_keyword").val();
-        load_data(hari, dosen, kelas, keyword, 1);
+        load_data(hari, dosen, kelas, ruang, matkul, keyword, 1);
       });
       $('#s_hari').change(function() {
         var hari = $("#s_hari").val();
+        var matkul = $("#s_matkul").val();
+        var ruang = $("#s_ruang").val();
         var dosen = $("#s_dosen").val();
         var kelas = $("#s_kelas").val();
         var keyword = $("#s_keyword").val();
-        load_data(hari, dosen, kelas, keyword, 1);
+        load_data(hari, dosen, kelas, ruang, matkul, keyword, 1);
       });
       $('#s_dosen').change(function() {
         var hari = $("#s_hari").val();
+        var matkul = $("#s_matkul").val();
+        var ruang = $("#s_ruang").val();
         var dosen = $("#s_dosen").val();
         var kelas = $("#s_kelas").val();
         var keyword = $("#s_keyword").val();
-        load_data(hari, dosen, kelas, keyword, 1);
+        load_data(hari, dosen, kelas, ruang, matkul, keyword, 1);
       });
       $('#s_kelas').change(function() {
         var hari = $("#s_hari").val();
+        var matkul = $("#s_matkul").val();
+        var ruang = $("#s_ruang").val();
         var dosen = $("#s_dosen").val();
         var kelas = $("#s_kelas").val();
         var keyword = $("#s_keyword").val();
-        load_data(hari, dosen, kelas, keyword, 1);
+        load_data(hari, dosen, kelas, ruang, matkul, keyword, 1);
+      });
+      $('#s_ruang').change(function() {
+        var hari = $("#s_hari").val();
+        var matkul = $("#s_matkul").val();
+        var ruang = $("#s_ruang").val();
+        var dosen = $("#s_dosen").val();
+        var kelas = $("#s_kelas").val();
+        var keyword = $("#s_keyword").val();
+        load_data(hari, dosen, kelas, ruang, matkul, keyword, 1);
+      });
+      $('#s_matkul').change(function() {
+        var hari = $("#s_hari").val();
+        var matkul = $("#s_matkul").val();
+        var ruang = $("#s_ruang").val();
+        var dosen = $("#s_dosen").val();
+        var kelas = $("#s_kelas").val();
+        var keyword = $("#s_keyword").val();
+        load_data(hari, dosen, kelas, ruang, matkul, keyword, 1);
       });
     });
   </script>
@@ -132,68 +164,98 @@ $nama_file_baru = 'data' . $tgl_sekarang . '.xlsx';
         </form>
       </div>
     </div>
-    <div class="flex justify-center flex-col">
-      <form class="flex justify-center flex-wrap-reverse gap-5 md:gap-0 lg:gap-0 <?php if($LOGIN == false){ echo "gap-0"; } ?>" method="POST" action="">
+    <div class="flex justify-center flex-col flex-wrap-reverse gap-5 md:gap-0 lg:gap-0 <?php if($LOGIN == false){ echo "gap-0"; } ?>">
+    <div class="flex justify-center flex-row flex-wrap-reverse gap-5 md:gap-0 lg:gap-0 <?php if($LOGIN == false){ echo "gap-0"; } ?>">
+      <form method="POST" action="">
         <select name="s_hari" id="s_hari" class="rounded-md text-center w-20 h-11 bg-indigo-300 text-black h-10 mr-3">
-          <option value="">Hari</option>
-          <option value="senin">Senin</option>
-          <option value="selasa">Selasa</option>
-          <option value="rabu">Rabu</option>
-          <option value="kamis">Kamis</option>
-          <option value="jumat">Jum'at</option>
-          <option value="sabtu">Sabtu</option>
+          <option value=""> Hari</option>
+          <?php
+          $sql ="SELECT hari FROM jadwal group by hari order by field(hari, 'senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu')";
+          $query = $conn -> prepare($sql);
+          $query -> execute();
+          $result = $query -> get_result();
+          while($data = $result -> fetch_assoc()){
+          ?>
+          <option value="<?=$data['hari']?>"><?=$data['hari']?></option> 
+          <?php
+          }
+          ?>
         </select>
 
         <select tabindex="0" name="s_dosen" id="s_dosen" class="rounded-md text-center w-24 h-11 bg-indigo-300 text-black h-10 mr-3">
-          <option value=""> Dosen </option>
-          <option value="ella">Ella</option>
-          <option value="adi">Adi</option>
-          <option value="ayres">Ayres</option>
-          <option value="dewi k">Dewi K</option>
-          <option value="mera">Mera </option>
-          <option value="agus">Agus</option>
-          <option value="dewiyanti">Dewiyanti </option>
-          <option value="chandra">Chandra </option>
-          <option value="weldy">Weldy</option>
-          <option value="anggi">Anggi</option>
-          <option value="rasyid">Rasyid</option>
-          <option value="herlino">Herlino</option>
-          <option value="taufik">Taufik</option>
-          <option value="risna">Risna</option>
-          <option value="syamsi">Syamsi</option>
-          <option value="euis">Euis</option>
-          <option value="asep">Asep</option>
-          <option value="iklima">Iklima</option>
-          <option value="shinta">Shinta</option>
-          <option value="refirman">Refirman</option>
+           <option value=""> Dosen </option>
+          <?php
+          $sql ="SELECT dosen FROM jadwal group by dosen order by dosen asc";
+          $query = $conn -> prepare($sql);
+          $query -> execute();
+          $result = $query -> get_result();
+          while($data = $result -> fetch_assoc()){
+          ?>
+          <option value="<?=$data['dosen']?>"><?=$data['dosen']?></option> 
+          <?php
+          }
+          ?>
         </select>
 
-        <select tabindex="0" name="s_kelas" id="s_kelas" class="rounded-md text-center w-20 h-11 bg-indigo-300 text-black h-10 mr-3">
-          <option value="">Kelas</option>
-          <option value="ti 1 a">TI 1A</option>
-          <option value="ti 1 b">TI 1B</option>
-          <option value="ti 3 a">TI 3A</option>
-          <option value="ti 3 b">TI 3B</option>
-          <option value="ti 5 a">TI 5A</option>
-          <option value="ti 5 b">TI 5B</option>
-          <option value="ti 7 a">TI 7A</option>
-          <option value="ti 7 b">TI 7B</option>
+        <select tabindex="0" name="s_kelas" id="s_kelas" class="rounded-md text-center w-20 h-11 bg-indigo-300 text-black h-10">
+           <option value="">Kelas</option>
+          <?php
+          $sql ="SELECT kelas FROM jadwal group by kelas order by kelas asc";
+          $query = $conn -> prepare($sql);
+          $query -> execute();
+          $result = $query -> get_result();
+          while($data = $result -> fetch_assoc()){
+          ?>
+          <option value="<?=$data['kelas']?>"><?=$data['kelas']?></option> 
+          <?php
+          }
+          ?>
         </select>
-        <button class=" btn rounded-lg bg-violet-400 hover:bg-violet-500 active:scale-75 border-none text-black" id="resetfilter"> Reset </button>
+        </div>
+        <div class="flex justify-center flex-row flex-wrap-reverse gap-5 mt-3 md:gap-0 lg:gap-0 <?php if($LOGIN == false){ echo "gap-0"; } ?>">
+        <select tabindex="0" name="s_ruang" id="s_ruang" class="rounded-md text-center w-24 h-11 bg-indigo-300 text-black h-10 mr-3">
+           <option value="">Ruangan</option>
+          <?php
+          $sql ="SELECT ruang FROM jadwal group by ruang order by ruang asc";
+          $query = $conn -> prepare($sql);
+          $query -> execute();
+          $result = $query -> get_result();
+          while($data = $result -> fetch_assoc()){
+          ?>
+          <option value="<?=$data['ruang']?>"><?=$data['ruang']?></option> 
+          <?php
+          }
+          ?>
+        </select>
+
+           <select tabindex="0" name="s_matkul" id="s_matkul" class="rounded-md text-center w-32 h-11 bg-indigo-300 text-black h-10 mr-3">
+           <option value="">Mata Kuliah</option>
+          <?php
+          $sql ="SELECT matkul FROM jadwal group by matkul order by matkul asc";
+          $query = $conn -> prepare($sql);
+          $query -> execute();
+          $result = $query -> get_result();
+          while($data = $result -> fetch_assoc()){
+          ?>
+          <option value="<?=$data['matkul']?>"><?=$data['matkul']?></option> 
+          <?php
+          }
+          ?>
+          </select>
+       
+          <button class=" btn rounded-lg bg-violet-400 hover:bg-violet-500 active:scale-75 border-none mt-3 text-black" id="resetfilter"> Reset </button>
 
         <!-- Link untuk ke halaman tambah jadwal -->
         <?php
         if ($LOGIN == true) { ?>
 
-          <a href="tambahJadwal.php" class="rounded-lg btn bg-teal-300 hover:bg-teal-400 border-none ml-3 text-black"> Tambah  </a>
+          <a href="tambahJadwal.php" class="rounded-lg btn bg-teal-300 hover:bg-teal-400 border-none ml-3 mt-3 text-black"> Tambah  </a>
 
         <?php
         } ?>
-
-
+      </div>
       </form>
     </div>
-
   </div>
 
   <div class="flex justify-center ml-0 mr-0 flex-col m-10 mb-3 md:ml-10 lg:ml-10 md:mr-10 lg:mr-10 rounded-lg" id="data"> </div>
